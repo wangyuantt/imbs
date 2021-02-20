@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/personalManage': {
+        target: 'http://test.hccb.cc/personalManage',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/personalManage': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

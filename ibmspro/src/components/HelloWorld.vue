@@ -80,6 +80,7 @@
         </a>
       </li>
     </ul>
+    <button @click="test">request</button>
   </div>
 </template>
 
@@ -89,6 +90,18 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    test () {
+      console.log('dsds')
+      let params = {
+            name: 'fdf',
+            certNo: '5454543543'
+          }
+      this.$vueHttp.post('/login/test',params).then(res => {
+        console.log(res, 'dsd')
+      })
     }
   }
 }
