@@ -96,12 +96,16 @@ export default {
     test () {
       console.log('dsds')
       let params = {
-            name: 'fdf',
-            certNo: '5454543543'
+            name: '潘子健',
+            certNo: '330102198908280614'
           }
-      this.$vueHttp.post('/login/test',params).then(res => {
-        console.log(res, 'dsd')
+      // this.$vueHttp.post('/login/test',params).then(res => {
+      //   console.log(res, 'dsd')
+      // })
+      this.$commonAPI.userLogin(params).then(res => {
+        console.log(res, 'dsfffd')
       })
+
     }
   }
 }
