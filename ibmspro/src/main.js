@@ -11,7 +11,8 @@ import store from './store/index'
 // ElementUI
 import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
-import './element/theme.scss'
+import './style/theme.scss'
+import './style/common.css'
 // Axos基本请求
 import $vueHttp from './axiosRequest/axiosRequest'
 //模块化API请求
