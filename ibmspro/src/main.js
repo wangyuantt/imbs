@@ -12,7 +12,7 @@ import router from './router'
 import $vueHttp from './axiosRequest/axiosRequest'
 
 //模块化API请求
-import * as $commonAPI from './api/commonAPI/commonApi'
+import * as $commonAPI from './api/commonAPI/commonApi' /**  **/
 
 Vue.config.productionTip = false
 Vue.prototype.$vueHttp = $vueHttp
