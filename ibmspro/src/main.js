@@ -8,10 +8,17 @@ import App from './App'
 import router from './router'
 // Vuex
 import store from './store/index'
+// ElementUI
+import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+import './element/theme.scss'
 // Axos基本请求
 import $vueHttp from './axiosRequest/axiosRequest'
 //模块化API请求
-import * as $commonAPI from './api/commonAPI/commonApi' /**  **/
+import * as $commonAPI from './api/commonAPI/commonApi'
+
+
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 Vue.prototype.$vueHttp = $vueHttp

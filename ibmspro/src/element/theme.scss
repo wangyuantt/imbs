@@ -1,0 +1,13 @@
+/*
+ * @Author: Wang Yuan 
+ * @Date: 2021-02-21 15:54:10 
+ * @Last Modified by: Wang Yuan
+ * @Last Modified time: 2021-02-21 15:54:37
+ */
+/* 改变主题色变量 */
+$--color-primary: teal;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
