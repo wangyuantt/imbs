@@ -1,0 +1,38 @@
+/*
+ * @Author: Wang Yuan 
+ * @Date: 2021-02-21 16:34:06 
+ * @Last Modified by: Wang Yuan
+ * @Last Modified time: 2021-02-21 16:42:59
+ */
+ /* color */
+  .color-red {
+    color: #cb301c;
+  }
+  .color-green {
+    color: #44ce6c;
+  }
+  .background-red {
+    background-color: #cb301c;
+  }
+  .background-green {
+    background-color: #44ce6c;
+  }
+ /* padding */
+ .no-padding {
+    padding: 0
+  }
+  /* margin */
+  .no-margin {
+    margin:  0
+  }
+  /* flex */
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+  }
