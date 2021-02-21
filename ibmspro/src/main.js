@@ -4,13 +4,12 @@ import Vue from 'vue'
 
 // 组件
 import App from './App'
-
 // Vue路由
 import router from './router'
-
+// Vuex
+import store from './store/index'
 // Axos基本请求
 import $vueHttp from './axiosRequest/axiosRequest'
-
 //模块化API请求
 import * as $commonAPI from './api/commonAPI/commonApi' /**  **/
 
@@ -22,6 +21,7 @@ Vue.prototype.$commonAPI = $commonAPI
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
