@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 21:56:46
+ * @Last Modified time: 2021-02-23 21:58:52
  */
 <template>
     <div class="passed-vehicler-ecord-query">
@@ -72,7 +72,7 @@
                 </el-col>
                 <el-col :span="12" style="margin-top:40px">
                     <el-button size='small' type="primary">查询</el-button>
-                    <el-button size='small'>清除</el-button>
+                    <el-button size='small'>重置</el-button>
                 </el-col>
             </el-row>
         </div>
