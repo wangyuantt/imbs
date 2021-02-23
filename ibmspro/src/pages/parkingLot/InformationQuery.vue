@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 20:47:32
+ * @Last Modified time: 2021-02-23 22:08:13
  */
 <template>
     <div class="information-query">
@@ -21,16 +21,19 @@
             </div>
             <div class="information-query-main">
                 <passedVehicleRecordQuery v-if="itemActive === 0" />
+                <vehicleQueryWarehouse v-if="itemActive === 1" />
             </div>
         </div>
     </div>
 </template>
 <script>
-import passedVehicleRecordQuery from './passedVehicleRecordQuery/passedVehicleRecordQuery'
+import passedVehicleRecordQuery from './passedVehicleRecordQuery/passedVehicleRecordQuery' // 过车记录查询
+import vehicleQueryWarehouse from './vehicleQueryWarehouse/vehicleQueryWarehouse' // 库内车辆查询
 export default {
     name: 'informationQuery',
     components: {
-        passedVehicleRecordQuery
+        passedVehicleRecordQuery,
+        vehicleQueryWarehouse
     },
     data () {
         return {
