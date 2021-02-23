@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 22:24:55
+ * @Last Modified time: 2021-02-23 22:37:48
  */
 <template>
     <div class="passed-vehicler-ecord-query">
@@ -494,6 +494,5 @@ export default {
     }
     
 }
-    
 </style>
 
