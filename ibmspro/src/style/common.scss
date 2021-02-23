@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 16:34:06 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 15:24:03
+ * @Last Modified time: 2021-02-23 16:44:28
  */
  /* color */
   .color-red {
@@ -16,6 +16,11 @@
   }
   .background-green {
     background-color: #44ce6c;
+  }
+  // font
+  .tip-span {
+    font-size: 14px;
+    color: #999;
   }
 
  /* padding */
@@ -34,17 +39,18 @@
     justify-content: center;
     align-items: center
   }
+  .flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .flex-start {
     display: flex;
     justify-content: flex-start;
     align-items: center
   }
-  @font-face {
-    font-family: 'iconfont';  /* project id 1254715 */
-    src: url('//at.alicdn.com/t/font_1254715_s1khj1whikd.eot');
-    src: url('//at.alicdn.com/t/font_1254715_s1khj1whikd.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1254715_s1khj1whikd.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1254715_s1khj1whikd.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1254715_s1khj1whikd.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1254715_s1khj1whikd.svg#iconfont') format('svg');
-}
+  .full-page {
+    width: 100%;
+    height: 100%;
+  }
