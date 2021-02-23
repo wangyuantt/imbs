@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-20 17:31:15 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 12:15:24
+ * @Last Modified time: 2021-02-23 12:34:11
  */
 import axios from 'axios'
 
@@ -25,7 +25,14 @@ Axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 Axios.interceptors.response.use(function (response) {
-    return response;
+    if (response.status !== 200) {
+        Vue.$message({
+            message: '请求失败！',
+            type: 'warning'
+        })
+    } else {
+        return response.data
+    }
 }, function (error) {
     // 对响应错误做点什么
     return Promise.reject(error);
