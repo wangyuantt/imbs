@@ -2,12 +2,12 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-20 17:31:15 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-20 17:31:49
+ * @Last Modified time: 2021-02-23 12:15:24
  */
 import axios from 'axios'
 
 const Axios = axios.create({
-    baseURL: '/personalManage',
+    baseURL: '/ibms',
     responseType: 'json',
     timeout: 10000,
     headers: {

@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/personalManage': {
-        target: 'http://test.hccb.cc/personalManage',
+      '/ibms': {
+        target: 'http://ibms.renyecn.com:8002/ibms',
         changeOrigin: true,
         pathRewrite:{
-          '^/personalManage': ''
+          '^/ibms': ''
         }
       }
     },
