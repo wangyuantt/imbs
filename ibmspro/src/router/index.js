@@ -6,7 +6,7 @@ import Login from '@pages/Login'
 
 // 车辆管控配置
 import vehicleControlConfig from '@pages/vehicleControlConfig/vehicleControlConfig'
-// import paramterConfig from '@pages/vehicleControlConfig/paramterConfig/paramterConfig'
+import parameterConfig from '@pages/vehicleControlConfig/parameterConfig/parameterConfig'
 import parkingGarage from '@pages/vehicleControlConfig/parkingGarage/parkingGarage'
 
 Vue.use(Router)
@@ -35,6 +35,12 @@ export default new Router({
               name: 'parkingGarage',
               meta: { showTitle: true, title: '车辆管控配置', subTitle: '停车场', currentPageTitle: '停车库' },
               component: parkingGarage
+            },
+            {
+              path: 'parameterConfig',
+              name: 'parameterConfig',
+              meta: { showTitle: true, title: '车辆管控配置', subTitle: '停车场', currentPageTitle: '参数配置' },
+              component: parameterConfig
             }
           ]
         }
