@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 13:28:44
+ * @Last Modified time: 2021-02-23 15:59:10
  */
 <template>
     <div class="IMBS_APP APP">
@@ -56,6 +56,14 @@ export default {
         handleSelect(key, keyPath) {
             if (key == '1-1-1') {
                 let path = '/vehicleControlConfigModule/vehicleControlConfig/parkingGarage'
+                if (this.$route.path !== path) {
+                    this.$router.push({
+                        path: path
+                    })
+                }
+            }
+            if (key == '1-1-2') {
+                let path = '/vehicleControlConfigModule/vehicleControlConfig/parameterConfig'
                 if (this.$route.path !== path) {
                     this.$router.push({
                         path: path
