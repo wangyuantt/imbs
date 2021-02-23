@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 16:20:42 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 16:57:19
+ * @Last Modified time: 2021-02-23 17:29:50
  */
 <template>
     <div class="release-parameters full-page">
@@ -46,7 +46,7 @@
                     <el-button type="danger" plain size="small">不放行</el-button>
                     <el-button type="primary" plain size="small">放行</el-button>
                 </el-button-group>
-                <span class="tip-span">异常收费为0或修改金额为0时，需要岗亭操作员确认后点击放行按钮放行。</span>
+                <div class="tip-span">异常收费为0或修改金额为0时，需要岗亭操作员确认后点击放行按钮放行。</div>
             </el-col>
         </el-row>
         <el-row type="flex" justify="center" style="margin-top:30px">

@@ -3,7 +3,7 @@
  * @Date: 2021-02-21 17:40:20 
  * @Desc: 车辆管控配置-停车场-参数配置 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 16:23:18
+ * @Last Modified time: 2021-02-23 17:09:46
  */
 <template>
     <div class="parameter-config">
@@ -21,17 +21,20 @@
                 </el-row>
             </div>
             <div class="parameter-config-main">
-                <releaseParam />
+                <releaseParam v-if="itemActive === 0" />
+                <paymentParam v-if="itemActive === 1"  />
             </div>
         </div>
     </div>
 </template>
 <script>
-import releaseParam from './components/releaseParam'
+import releaseParam from './components/releaseParam' // 放行参数
+import paymentParam from './components/paymentParam' // 缴费参数
 export default {
     name: 'parameterConfig',
     components: {
-        releaseParam
+        releaseParam,
+        paymentParam
     },
     data () {
         return {
