@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 21:58:52
+ * @Last Modified time: 2021-02-23 22:24:55
  */
 <template>
     <div class="passed-vehicler-ecord-query">
@@ -83,7 +83,7 @@
         <div class="table">
             <el-row type="flex" justify="center">
                 <el-col :span=23>
-                    <el-table :data="tableData" border style="width: 100%" max-height='600'>
+                    <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
                         <el-table-column prop="tLicenseNum" label="车牌号码"></el-table-column>
                         <el-table-column prop="tCardNum" label="卡号"></el-table-column>
                         <el-table-column prop="tLicensePicture" label="车辆类型"></el-table-column>
@@ -110,7 +110,7 @@
                             </template>
                         </el-table-column>
                         <el-table-column prop="tPassingTime" label="通过时间"></el-table-column>
-                        <el-table-column prop="tParkingLot" label="停车场"></el-table-column>
+                        <el-table-column prop="tParkingLot" label="停车库"></el-table-column>
                         <el-table-column prop="tEnter" label="出入口"></el-table-column>
                         <el-table-column prop="tPassingDirection" label="过车方向"></el-table-column>
                         <el-table-column prop="tReleaseResult" label="放行结果"></el-table-column>
