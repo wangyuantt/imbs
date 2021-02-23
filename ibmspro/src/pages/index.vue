@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 15:59:10
+ * @Last Modified time: 2021-02-23 20:31:29
  */
 <template>
     <div class="IMBS_APP APP">
@@ -21,13 +21,9 @@
                             <el-submenu index="1">
                                 <template slot="title">
                                     <i class="el-icon-location"></i>
-                                    <span>车辆管控配置</span>
+                                    <span>停车场</span>
                                 </template>
-                                <el-submenu index="1-1">
-                                    <template slot="title">停车场</template>
-                                    <el-menu-item index="1-1-1">停车库</el-menu-item>
-                                    <el-menu-item index="1-1-2">参数配置</el-menu-item>
-                                </el-submenu>
+                                <el-menu-item index="1-1">信息查询</el-menu-item>
                             </el-submenu>
                         </el-menu>
                     </el-col>
@@ -54,16 +50,8 @@ export default {
     },
     methods: {
         handleSelect(key, keyPath) {
-            if (key == '1-1-1') {
-                let path = '/vehicleControlConfigModule/vehicleControlConfig/parkingGarage'
-                if (this.$route.path !== path) {
-                    this.$router.push({
-                        path: path
-                    })
-                }
-            }
-            if (key == '1-1-2') {
-                let path = '/vehicleControlConfigModule/vehicleControlConfig/parameterConfig'
+            if (key == '1-1') {
+                let path = '/vehicleControlConfigModule/informationQuery'
                 if (this.$route.path !== path) {
                     this.$router.push({
                         path: path

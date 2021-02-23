@@ -1,0 +1,122 @@
+/*
+ * @Author: Wang Yuan 
+ * @Date: 2021-02-23 20:27:49 
+ * @Last Modified by: Wang Yuan
+ * @Last Modified time: 2021-02-23 20:47:32
+ */
+<template>
+    <div class="information-query">
+        <div class="information-query-breadcrumb breadcrumb">
+            <span>{{navTitle}}</span>
+        </div>
+        <div class="information-query-content flex-start">
+            <div class="information-query-aside">
+                <el-row type="flex" justify="center" style="margin-top:10px">
+                    <el-col :span="22">
+                        <div @click="switemItem(index)" class="item" :class="itemActive === index ? 'itemActive': ''" v-for="(item, index) in asideArr" :key="index">
+                            {{item.name}}
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+            <div class="information-query-main">
+                <passedVehicleRecordQuery v-if="itemActive === 0" />
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import passedVehicleRecordQuery from './passedVehicleRecordQuery/passedVehicleRecordQuery'
+export default {
+    name: 'informationQuery',
+    components: {
+        passedVehicleRecordQuery
+    },
+    data () {
+        return {
+            itemActive: 0,
+            asideArr: [
+                {
+                    name: '过车记录查询'
+                },{
+                    name: '库内车辆查询'
+                },{
+                    name: '泊位记录查询'
+                },{
+                    name: '一户多车状态查寻'
+                },{
+                    name: '车辆包期退款记录查询'
+                },{
+                    name: '账户充值退款记录查询'
+                },{
+                    name: '临时车缴费记录查询'
+                },{
+                    name: '预约记录查询'
+                },{
+                    name: '优惠卷记录查询'
+                },{
+                    name: '班次记录查询'
+                },{
+                    name: '收费操作记录查询'
+                }
+            ]
+        }
+    },
+    computed: {
+        navTitle () {
+            let meta = this.$route.meta
+            return meta.title + ' > ' + meta.currentPageTitle
+        }
+    },
+    methods: {
+        switemItem (index) {
+            this.itemActive = index
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+    .information-query {
+        width: 100%;
+        height: 100%;
+        .breadcrumb{
+            width: 100%;
+            height: 34px;
+            font-size: 14px;
+            line-height: 34px;
+            color: #666;
+            padding-left: 20px;
+            border-bottom: 1px solid #F3f5f7;
+            box-sizing: border-box;
+        }
+        .information-query-content {
+            width: 100%;
+            height: calc(100% - 34px);
+            .information-query-aside {
+                width: 300px;
+                height: 100%;
+                border-right: 1px solid #f3f5f7;
+                box-sizing: border-box;
+                .item {
+                    width: 100%;
+                    height: 30px;
+                    cursor: pointer;
+                    line-height: 30px;
+                    font-size: 14px;
+                    text-indent: 12px;
+                    border-radius: 4px;
+                    margin: 5px 0;
+                }
+                .itemActive {
+                    background-color: #409eff;
+                    color:#fff
+                }
+            }
+            .information-query-main {
+                width: calc(100% - 300px);
+                height: 100%
+            }
+        }
+    }
+</style>

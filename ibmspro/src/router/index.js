@@ -9,6 +9,9 @@ import vehicleControlConfig from '@pages/vehicleControlConfig/vehicleControlConf
 import parameterConfig from '@pages/vehicleControlConfig/parameterConfig/parameterConfig'
 import parkingGarage from '@pages/vehicleControlConfig/parkingGarage/parkingGarage'
 
+// 停车场-信息查询
+import informationQuery from '@pages/parkingLot/InformationQuery'
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +27,12 @@ export default new Router({
       name: 'Index',
       component: Index,
       children: [
+        {
+          path: 'informationQuery',
+          name: 'informationQuery',
+          meta: { showTitle: true, title: '停车场', subTitle: '', currentPageTitle: '信息查询' },
+          component: informationQuery,
+        },
         {
           path: 'vehicleControlConfig',
           name: 'vehicleControlConfig',
