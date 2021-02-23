@@ -3,7 +3,7 @@
  * @Date: 2021-02-21 17:40:20 
  * @Desc: 车辆管控配置-停车场-参数配置 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 18:51:35
+ * @Last Modified time: 2021-02-23 19:15:27
  */
 <template>
     <div class="parameter-config">
@@ -25,6 +25,7 @@
                 <paymentParam v-if="itemActive === 1"  />
                 <alipayWeChatParam v-if="itemActive === 2" />
                 <cardIssuingDeviceParam v-if="itemActive === 3" />
+                <voiceBroadcastParam  v-if="itemActive === 4" />
             </div>
         </div>
     </div>
@@ -34,7 +35,7 @@ import releaseParam from './components/releaseParam' // 放行参数
 import paymentParam from './components/paymentParam' // 缴费参数
 import alipayWeChatParam from './components/alitenConetParam' // 支付宝/微信对接参数
 import cardIssuingDeviceParam from './components/cardDeviceParam' // 发卡设备参数
-
+import voiceBroadcastParam from './components/voiceBroadcastParam' // 语音播报参数
 
 
 export default {
@@ -43,7 +44,8 @@ export default {
         releaseParam,
         paymentParam,
         alipayWeChatParam,
-        cardIssuingDeviceParam
+        cardIssuingDeviceParam,
+        voiceBroadcastParam
     },
     data () {
         return {
