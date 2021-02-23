@@ -3,7 +3,7 @@
  * @Date: 2021-02-21 17:44:27 
  * @Desc: 车辆管控配置-停车场-停车库 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 15:53:26
+ * @Last Modified time: 2021-02-23 16:18:16
  */
 <template>
     <div class="parking-garage">
@@ -115,6 +115,8 @@ export default {
                     width: 100%;
                     height: 30px;
                     cursor: pointer;
+                    text-indent: 12px;
+                    border-radius: 4px
                 }
                 .pItemActive{
                     background-color: #409eff;
