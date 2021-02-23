@@ -13,6 +13,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // import './style/theme.scss'
 import './style/common.scss'
+import './assets/iconfont/iconfont.css'
 // Axos基本请求
 import $vueHttp from './axiosRequest/axiosRequest'
 //模块化API请求
