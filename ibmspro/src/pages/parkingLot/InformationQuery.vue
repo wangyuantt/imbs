@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 22:37:18
+ * @Last Modified time: 2021-02-23 22:54:02
  */
 <template>
     <div class="information-query">
@@ -23,6 +23,7 @@
                 <passedVehicleRecordQuery v-if="itemActive === 0" />
                 <vehicleQueryWarehouse v-if="itemActive === 1" />
                 <berthRecordQuery v-if="itemActive === 2" />
+                <multiVehicleStatusQuery v-if="itemActive === 3" />
             </div>
         </div>
     </div>
@@ -31,13 +32,15 @@
 import passedVehicleRecordQuery from './passedVehicleRecordQuery/passedVehicleRecordQuery' // 过车记录查询
 import vehicleQueryWarehouse from './vehicleQueryWarehouse/vehicleQueryWarehouse' // 库内车辆查询
 import berthRecordQuery from './berthRecordQuery/berthRecordQuery' // 泊位记录查询
+import multiVehicleStatusQuery from './multiVehicleStatusQuery/multiVehicleStatusQuery'
 
 export default {
     name: 'informationQuery',
     components: {
         passedVehicleRecordQuery,
         vehicleQueryWarehouse,
-        berthRecordQuery
+        berthRecordQuery,
+        multiVehicleStatusQuery
     },
     data () {
         return {
