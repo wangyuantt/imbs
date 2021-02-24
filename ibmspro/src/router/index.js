@@ -37,6 +37,9 @@ import visitorAppointment from '@pages/onePass/visitorManagement/visitorAppointm
 import visitRecord from '@pages/onePass/visitorManagement/visitRecord/visitRecord'
 // 一卡通--访客管理--异常访客记录
 import abnormalVisitorRecord from '@pages/onePass/visitorManagement/abnormalVisitorRecord/abnormalVisitorRecord'
+// 一卡通--访客管理--访客权限下载记录
+import visitorpermissionDownloadRecord from '@pages/onePass/visitorManagement/visitorpermissionDownloadRecord/visitorpermissionDownloadRecord'
+
 
 Vue.use(Router)
 
@@ -48,10 +51,11 @@ export default new Router({
       component: Login
     },
     {
-      path: '/vehicleControlConfigModule',
+      path: '/imbsPlatform',
       alias: '/index',
       name: 'Index',
       component: Index,
+      redirect:'/imbsPlatform/informationQuery',
       children: [
         {
           path: 'alarmDetection',
@@ -126,6 +130,12 @@ export default new Router({
                   name: 'abnormalVisitorRecord',
                   meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '异常访客记录' },
                   component: abnormalVisitorRecord
+                },
+                {
+                  path: 'visitorpermissionDownloadRecord',
+                  name: 'visitorpermissionDownloadRecord',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '访客权限下载记录' },
+                  component: visitorpermissionDownloadRecord
                 }
               ]
             }

@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 15:10:58 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 23:15:20
+ * @Last Modified time: 2021-02-24 23:32:56
  */
 
 import Vue from 'vue'
@@ -22,47 +22,52 @@ const store = new Vuex.Store({
             {
                 index: '1-1',
                 name: 'informationQuery',
-                path: '/vehicleControlConfigModule/informationQuery'
+                path: '/imbsPlatform/informationQuery'
             },
             {
                 index: '2-1',
                 name: 'alarmDetection',
-                path: '/vehicleControlConfigModule/alarmDetection'
+                path: '/imbsPlatform/alarmDetection'
             },
             {
                 index: '3-1-1',
                 name: 'permissionConfigComprehensiveQuery',
-                path: '/vehicleControlConfigModule/onePass/accessControl/permissionConfigComprehensiveQuery'
+                path: '/imbsPlatform/onePass/accessControl/permissionConfigComprehensiveQuery'
             },
             {
                 index: '3-1-2',
                 name: 'permissionDownloadRecord',
-                path: '/vehicleControlConfigModule/onePass/accessControl/permissionDownloadRecord'
+                path: '/imbsPlatform/onePass/accessControl/permissionDownloadRecord'
             },
             {
                 index: '3-1-3',
                 name: 'equipmentEvent',
-                path: '/vehicleControlConfigModule/onePass/accessControl/equipmentEvent'
+                path: '/imbsPlatform/onePass/accessControl/equipmentEvent'
             },
             {
                 index: '3-2',
                 name: 'personnaIssuing',
-                path: '/vehicleControlConfigModule/onePass/personnaIssuing'
+                path: '/imbsPlatform/onePass/personnaIssuing'
             },
             {
                 index: '3-3-1',
                 name: 'visitorAppointment',
-                path: '/vehicleControlConfigModule/onePass/visitorManagement/visitorAppointment'
+                path: '/imbsPlatform/onePass/visitorManagement/visitorAppointment'
             },
             {
                 index: '3-3-2',
                 name: 'visitRecord',
-                path: '/vehicleControlConfigModule/onePass/visitorManagement/visitRecord'
+                path: '/imbsPlatform/onePass/visitorManagement/visitRecord'
             },
             {
                 index: '3-3-3',
                 name: 'abnormalVisitorRecord',
-                path: '/vehicleControlConfigModule/onePass/visitorManagement/abnormalVisitorRecord'
+                path: '/imbsPlatform/onePass/visitorManagement/abnormalVisitorRecord'
+            },
+            {
+                index: '3-3-4',
+                name: 'visitorpermissionDownloadRecord',
+                path: '/imbsPlatform/onePass/visitorManagement/visitorpermissionDownloadRecord'
             }
         ]
     }, 
