@@ -2,10 +2,12 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:37:46 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 21:38:06
+ * @Last Modified time: 2021-02-24 21:56:06
  */
 <template>
-    <div class="personna-issuing">personnaIssuing</div>
+    <div class="personna-issuing">
+        personna-issuing
+    </div>
 </template>
 
 <script>
