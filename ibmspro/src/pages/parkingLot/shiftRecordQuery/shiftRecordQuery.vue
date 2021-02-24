@@ -1,31 +1,19 @@
 /*
  * @Author: Wang Yuan 
- * @Date: 2021-02-24 15:21:52 
+ * @Date: 2021-02-24 16:34:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 16:38:42
+ * @Last Modified time: 2021-02-24 16:42:49
  */
 <template>
-    <div class="appointment-record-query">
+    <div class="shift-record-query">
         <div class="search-condition">
             <el-row>
                 <el-col :span="6">
-                    <div class="condition-one condition">
-                        <div class="tip-span margin-top-bottom">车牌号码</div>
-                        <el-input size="small" v-model="licensePlateNumber" placeholder="车牌号码"></el-input>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="condition-one condition">
-                        <div class="tip-span margin-top-bottom">联系电话</div>
-                        <el-input size="small" v-model="phoneNumber" placeholder="联系电话"></el-input>
-                    </div>
-                </el-col>
-                <el-col :span="6">
                     <div class="condition-three condition">
-                        <div class="tip-span margin-top-bottom">停车库</div>
-                        <el-select v-model="parkingGarage" placeholder="请选择" size="small" style="width:100%">
+                        <div class="tip-span margin-top-bottom">操作员</div>
+                        <el-select v-model="operator" placeholder="请选择" size="small" style="width:100%">
                             <el-option
-                            v-for="item in parkingGarageOptions"
+                            v-for="item in operatorOptions"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -34,11 +22,34 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
+                    <div class="condition-four condition">
+                        <div class="tip-span margin-top-bottom">开始时间</div>
+                        <el-date-picker
+                            style="width:100%"
+                            v-model="startingTime"
+                            type="datetime"
+                            size="small"
+                            placeholder="选择开始时间">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="condition-five condition">
+                        <div class="tip-span margin-top-bottom">结束时间</div>
+                        <el-date-picker style="width:100%"
+                            v-model="endingTime"
+                            type="datetime"
+                            size="small"
+                            placeholder="选择结束时间">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+                <el-col :span="6">
                     <div class="condition-three condition">
-                        <div class="tip-span margin-top-bottom">预约状态</div>
-                        <el-select v-model="reservationStatus" placeholder="请选择" size="small" style="width:100%">
+                        <div class="tip-span margin-top-bottom">停车库</div>
+                        <el-select v-model="parkingGarage" placeholder="请选择" size="small" style="width:100%">
                             <el-option
-                            v-for="item in reservationStatusOptions"
+                            v-for="item in parkingGarageOptions"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -62,15 +73,14 @@
             <el-row type="flex" justify="center">
                 <el-col :span=23>
                     <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
-                        <el-table-column prop="tLicenseNum" label="车牌号码"></el-table-column>
-                        <el-table-column prop="tParkingLot" label="联系人"></el-table-column>
-                        <el-table-column prop="tParkingStatus" label="联系电话"></el-table-column>
-                        <el-table-column prop="tLeaveTime" label="预约时间"></el-table-column>
-                        <el-table-column prop="tFloor" label="停车库"></el-table-column>
-                        <el-table-column prop="tFloor" label="预约状态"></el-table-column>
-                        <el-table-column prop="tFloor" label="允许进入次数"></el-table-column>
-                        <el-table-column prop="tFloor" label="是否收费"></el-table-column>
-                        <el-table-column prop="tFloor" label="预约来源"></el-table-column>
+                        <el-table-column prop="tLicenseNum" label="操作员"></el-table-column>
+                        <el-table-column prop="tParkingLot" label="停车库"></el-table-column>
+                        <el-table-column prop="tParkingStatus" label="开始时间"></el-table-column>
+                        <el-table-column prop="tLeaveTime" label="结束时间"></el-table-column>
+                        <el-table-column prop="tFloor" label="应收金额"></el-table-column>
+                        <el-table-column prop="tFloor" label="优惠金额"></el-table-column>
+                        <el-table-column prop="tFloor" label="全免金额"></el-table-column>
+                        <el-table-column prop="tFloor" label="实收金额"></el-table-column>
                     </el-table>
                 </el-col>
             </el-row>
@@ -92,42 +102,34 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-    name: 'appointmentRecordQuery',
+    name: 'shiftRecordQuery',
     data () {
         return {
             currentPage: 1,
             tableData: [],
-            licensePlateNumber: '',
-            phoneNumber: '',
-            reservationStatus: '0',
-            reservationStatusOptions: [
-                {
-                    value: '0',
-                    label: '全部'
-                }
-            ],
-            parkingGarage: '0',
-            parkingGarageOptions: [
+            startingTime: '',
+            endingTime: '',
+            operator: '0',
+            operatorOptions: [
                 {
                     value: '0',
                     label: '全部'
                 },
                 {
                     value: '1',
-                    label: '东苑'
-                },{
-                    value: '2',
-                    label: '南苑'
-                },{
-                    value: '3',
-                    label: '西苑'
-                },{
-                    value: '4',
-                    label: '北苑'
+                    label: '前台'
                 }
-            ]
+            ],
+            parkingGarageOptions: [
+                {
+                    value: '0',
+                    label: '全部'
+                }
+            ],
+            parkingGarage: '0'
         }
     },
     methods: {
@@ -141,7 +143,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .appointment-record-query {
+    .shift-record-query {
         .search-condition{
             width: 100%;
             min-width: 100px;
@@ -164,3 +166,4 @@ export default {
         }
     }
 </style>
+
