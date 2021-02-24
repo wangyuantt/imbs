@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 20:31:29
+ * @Last Modified time: 2021-02-24 17:36:22
  */
 <template>
     <div class="IMBS_APP APP">
@@ -12,7 +12,7 @@
                 <el-row class="tac">
                     <el-col :span="24">
                         <el-menu
-                            default-active="1-1-1"
+                            default-active="1-1"
                             class="el-menu-vertical-demo"
                             @select="handleSelect"
                             background-color="#1a1a1a"
@@ -24,6 +24,13 @@
                                     <span>停车场</span>
                                 </template>
                                 <el-menu-item index="1-1">信息查询</el-menu-item>
+                            </el-submenu>
+                            <el-submenu index="2">
+                                <template slot="title">
+                                    <i class="el-icon-bell"></i>
+                                    <span>报警检测</span>
+                                </template>
+                                <el-menu-item index="2-1">入侵报警</el-menu-item>
                             </el-submenu>
                         </el-menu>
                     </el-col>
