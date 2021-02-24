@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:49:01 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 21:58:50
+ * @Last Modified time: 2021-02-24 22:32:09
  */
 <template>
     <div class="aside menu am">
@@ -58,8 +58,48 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-    name: 'NavMenu'
+    name: 'NavMenu',
+    data () {
+        return {
+            defaultActive: ''
+        }
+    },
+    mounted () {
+        this.controlMenu(this.$route.name)
+        console.log(this.navMenuList, 'navMenuList')
+    },
+    watch: {
+        $route (to) {
+            this.controlMenu(to.name)
+        }
+    },
+    computed: {
+        ...mapState(['navMenuList'])
+    },
+    methods: {
+        mapNavMenu (params, flag) {
+            return this.navMenuList.find( item => {
+                return params === item[flag ? 'name' : 'index']
+            })
+        },
+        controlMenu (routerName) {
+            sessionStorage.setItem('routerName', routerName)
+            this.defaultActive = this.mapNavMenu(routerName, true).index
+        },
+        handleSelect(key, keyPath) {
+            let currentPath = this.$route.path
+            let path = this.mapNavMenu(key, false).path
+            sessionStorage.setItem('currentPath', currentPath)
+            if (currentPath !== path) {
+                this.$router.push({
+                    path: path
+                })
+            }
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
