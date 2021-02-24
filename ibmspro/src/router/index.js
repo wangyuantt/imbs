@@ -12,6 +12,9 @@ import parkingGarage from '@pages/vehicleControlConfig/parkingGarage/parkingGara
 // 停车场-信息查询
 import informationQuery from '@pages/parkingLot/InformationQuery'
 
+// 报警检测-入侵报警
+import alarmDetection from '@pages/alarmDetection/alarmDetection'
+
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +30,12 @@ export default new Router({
       name: 'Index',
       component: Index,
       children: [
+        {
+          path: 'alarmDetection',
+          name: 'alarmDetection',
+          meta: { showTitle: true, title: '报警检测', subTitle: '', currentPageTitle: '入侵报警' },
+          component: alarmDetection,
+        },
         {
           path: 'informationQuery',
           name: 'informationQuery',

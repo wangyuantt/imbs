@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 17:36:22
+ * @Last Modified time: 2021-02-24 18:34:20
  */
 <template>
     <div class="IMBS_APP APP">
@@ -12,7 +12,7 @@
                 <el-row class="tac">
                     <el-col :span="24">
                         <el-menu
-                            default-active="1-1"
+                            :default-active="defaultActive"
                             class="el-menu-vertical-demo"
                             @select="handleSelect"
                             background-color="#1a1a1a"
@@ -52,13 +52,38 @@ export default {
     },
     data () {
         return {
-            name: "Index"
+            name: "Index",
+            defaultActive: ''
+        }
+    },
+    mounted () {
+        this.controlMenu(this.$route.name)
+    },
+    watch: {
+        $route (to) {
+            this.controlMenu(to.name)
         }
     },
     methods: {
+        controlMenu (routerName) {
+            if (routerName === 'informationQuery') {
+                this.defaultActive = '1-1'
+            }
+            if (routerName === 'alarmDetection') {
+                this.defaultActive = '2-1'
+            }
+        },
         handleSelect(key, keyPath) {
             if (key == '1-1') {
                 let path = '/vehicleControlConfigModule/informationQuery'
+                if (this.$route.path !== path) {
+                    this.$router.push({
+                        path: path
+                    })
+                }
+            }
+            if (key == '2-1') {
+                let path = '/vehicleControlConfigModule/alarmDetection'
                 if (this.$route.path !== path) {
                     this.$router.push({
                         path: path
