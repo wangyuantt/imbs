@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 22:27:57 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 22:51:42
+ * @Last Modified time: 2021-02-24 10:44:05
  */
 <template>
     <div class="berth-record-query">
@@ -141,7 +141,7 @@ export default {
     name: 'berthRecordQuery',
     data () {
         return {
-            currentPage: '1',
+            currentPage: 1,
             tableData: [
                 {
                     tLicenseNum: '浙A88888',
