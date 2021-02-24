@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:49:01 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 22:55:39
+ * @Last Modified time: 2021-02-24 23:05:47
  */
 <template>
     <div class="aside menu am">
@@ -46,6 +46,7 @@
                         <el-submenu index="3-3">
                             <template slot="title">访客管理</template>
                             <el-menu-item index="3-3-1">访客预约</el-menu-item>
+                            <el-menu-item index="3-3-2">来访记录</el-menu-item>
                         </el-submenu>
                     </el-submenu>
                     <el-submenu index="4">

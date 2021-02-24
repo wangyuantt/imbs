@@ -33,7 +33,8 @@ import personnaIssuing from '@pages/onePass/personneIssuing/personnaIssuing'
 import visitorManagement from '@pages/onePass/visitorManagement/visitorManagement'
 // 一卡通--访客管理--访客预约
 import visitorAppointment from '@pages/onePass/visitorManagement/visitorAppointment/visitorAppointment'
-
+// 一卡通--访客管理--来访记录
+import visitRecord from '@pages/onePass/visitorManagement/visitRecord/visitRecord'
 Vue.use(Router)
 
 export default new Router({
@@ -110,6 +111,12 @@ export default new Router({
                   name: 'visitorAppointment',
                   meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '访客预约' },
                   component: visitorAppointment
+                },
+                {
+                  path: 'visitRecord',
+                  name: 'visitRecord',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '来访记录' },
+                  component: visitRecord
                 }
               ]
             }
