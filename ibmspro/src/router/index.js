@@ -21,7 +21,8 @@ import onePass from '@pages/onePass/onePass'
 import accessControl from '@pages/onePass/accessControl/accessControl'
 // 一卡通--门禁管理--权限配置综合查询
 import permissionConfigComprehensiveQuery from '@pages/onePass/accessControl/permissionConfigComprehensiveQuery/permissionConfigComprehensiveQuery'
-
+// 一卡通--门禁管理--权限下载记录
+import permissionDownloadRecord from '@pages/onePass/accessControl/permissionDownloadRecord/permissionDownloadRecord'
 Vue.use(Router)
 
 export default new Router({
@@ -66,6 +67,12 @@ export default new Router({
                   name: 'permissionConfigComprehensiveQuery',
                   meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '权限配置综合查询' },
                   component: permissionConfigComprehensiveQuery,
+                },
+                {
+                  path: 'permissionDownloadRecord',
+                  name: 'permissionDownloadRecord',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '权限下载记录' },
+                  component: permissionDownloadRecord,
                 }
               ]
             }
