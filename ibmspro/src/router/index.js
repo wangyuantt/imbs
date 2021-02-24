@@ -40,6 +40,10 @@ import abnormalVisitorRecord from '@pages/onePass/visitorManagement/abnormalVisi
 // 一卡通--访客管理--访客权限下载记录
 import visitorpermissionDownloadRecord from '@pages/onePass/visitorManagement/visitorpermissionDownloadRecord/visitorpermissionDownloadRecord'
 
+// 视频监控
+import videoSurveillance from '@pages/videoSurveillance/videoSurveillance'
+// 视频监控 - 实时预览
+import realTimePreview from '@pages/videoSurveillance/realTimePreview/realTimePreview'
 
 Vue.use(Router)
 
@@ -138,6 +142,20 @@ export default new Router({
                   component: visitorpermissionDownloadRecord
                 }
               ]
+            }
+          ]
+        },
+        {
+          path: 'videoSurveillance',
+          name: 'videoSurveillance',
+          meta: { showTitle: true, title: '视频监控', subTitle: '', currentPageTitle: '' },
+          component: videoSurveillance,
+          children: [
+            {
+              path: 'realTimePreview',
+              name: 'realTimePreview',
+              meta: { showTitle: true, title: '视频监控', subTitle: '', currentPageTitle: '实时预览' },
+              component: realTimePreview,
             }
           ]
         },

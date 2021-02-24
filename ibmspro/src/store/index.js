@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 15:10:58 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 23:49:22
+ * @Last Modified time: 2021-02-24 23:59:19
  */
 
 import Vue from 'vue'
@@ -69,6 +69,11 @@ const store = new Vuex.Store({
                 index: '3-3-4',
                 name: 'visitorpermissionDownloadRecord',
                 path: '/imbsPlatform/onePass/visitorManagement/visitorpermissionDownloadRecord'
+            },
+            {
+                index: '4-1',
+                name: 'realTimePreview',
+                path: '/imbsPlatform/videoSurveillance/realTimePreview'
             }
         ]
     }, 
