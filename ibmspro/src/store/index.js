@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 15:10:58 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 22:09:28
+ * @Last Modified time: 2021-02-24 22:37:30
  */
 
 import Vue from 'vue'
@@ -48,6 +48,12 @@ const store = new Vuex.Store({
                 index: '3-2',
                 name: 'personnaIssuing',
                 path: '/vehicleControlConfigModule/onePass/personnaIssuing'
+            },
+            {
+                index: '3-3',
+                name: 'visitorManagement',
+                path: '/vehicleControlConfigModule/onePass/visitorManagement'
+                
             }
         ]
     }, 
