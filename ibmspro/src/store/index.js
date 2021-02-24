@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 15:10:58 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 23:32:56
+ * @Last Modified time: 2021-02-24 23:49:22
  */
 
 import Vue from 'vue'
@@ -15,6 +15,7 @@ const store = new Vuex.Store({
         AppInfo: {
             author: 'Wang Yuan',
             email: 'wonyuan168@qq.com',
+            appName: 'Comprehensive Security Management Platform',
             creationTime: '1613891660322M20200220',
             version: '1.0.0'
         },
