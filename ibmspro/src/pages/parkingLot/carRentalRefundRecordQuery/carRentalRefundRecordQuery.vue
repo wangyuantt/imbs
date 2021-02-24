@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 10:45:37 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 14:35:32
+ * @Last Modified time: 2021-02-24 14:54:53
  */
 <template>
     <div class="car-rental-refund-record-query">
@@ -129,7 +129,7 @@
                         <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
                             <el-table-column prop="tLicenseNum" label="车牌号码"></el-table-column>
                             <el-table-column prop="tParkingLot" label="停车库"></el-table-column>
-                            <el-table-column prop="tParkingNumber" label="重置(+)/退款(-)"></el-table-column>
+                            <el-table-column prop="tParkingNumber" label="重置(+)/退款(-)（元）"></el-table-column>
                             <el-table-column prop="tParkingStatus" label="收支类型"></el-table-column>
                             <el-table-column prop="tLeaveTime" label="收支方式"></el-table-column>
                             <el-table-column prop="tFloor" label="卡号"></el-table-column>
