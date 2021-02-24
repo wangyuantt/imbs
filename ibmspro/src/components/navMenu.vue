@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:49:01 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 22:35:04
+ * @Last Modified time: 2021-02-24 22:55:39
  */
 <template>
     <div class="aside menu am">
@@ -42,7 +42,11 @@
                                 <el-menu-item index="3-1-3">设备事件</el-menu-item>
                             </el-submenu>
                         <el-menu-item index="3-2">人员发卡</el-menu-item>
-                        <el-menu-item index="3-3">访客管理</el-menu-item>
+
+                        <el-submenu index="3-3">
+                            <template slot="title">访客管理</template>
+                            <el-menu-item index="3-3-1">访客预约</el-menu-item>
+                        </el-submenu>
                     </el-submenu>
                     <el-submenu index="4">
                         <template slot="title">
@@ -68,6 +72,7 @@ export default {
         }
     },
     mounted () {
+        console.log(this.navMenuList, 'navMenuList')
         this.controlMenu(this.$route.name)
     },
     watch: {

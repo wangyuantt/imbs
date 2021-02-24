@@ -25,10 +25,14 @@ import permissionConfigComprehensiveQuery from '@pages/onePass/accessControl/per
 import permissionDownloadRecord from '@pages/onePass/accessControl/permissionDownloadRecord/permissionDownloadRecord'
 // 一卡通--门禁管理--设备事件
 import equipmentEvent from '@pages/onePass/accessControl/equipmentEvent/equipmentEvent'
+
 // 一卡通--人员发卡
 import personnaIssuing from '@pages/onePass/personneIssuing/personnaIssuing'
+
 // 一卡通--访客管理
 import visitorManagement from '@pages/onePass/visitorManagement/visitorManagement'
+// 一卡通--访客管理--访客预约
+import visitorAppointment from '@pages/onePass/visitorManagement/visitorAppointment/visitorAppointment'
 
 Vue.use(Router)
 
@@ -100,6 +104,14 @@ export default new Router({
               name: 'visitorManagement',
               meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '' },
               component: visitorManagement,
+              children: [
+                {
+                  path: 'visitorAppointment',
+                  name: 'visitorAppointment',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '访客管理', currentPageTitle: '访客预约' },
+                  component: visitorAppointment
+                }
+              ]
             }
           ]
         },
