@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 14:57:30
+ * @Last Modified time: 2021-02-24 15:22:57
  */
 <template>
     <div class="information-query">
@@ -27,6 +27,7 @@
                 <carRentalRefundRecordQuery v-if="itemActive === 4" />
                 <accountRechargeAndRefundRecordQuery v-if="itemActive === 5" />
                 <temporaryCarPaymentRecordQuery v-if="itemActive === 6" />
+                <appointmentRecordQuery v-if="itemActive === 7" />
             </div>
         </div>
     </div>
@@ -39,6 +40,9 @@ import multiVehicleStatusQuery from './multiVehicleStatusQuery/multiVehicleStatu
 import carRentalRefundRecordQuery from './carRentalRefundRecordQuery/carRentalRefundRecordQuery' // 车辆包期退款记录查询
 import accountRechargeAndRefundRecordQuery from './accountRechargeAndRefundRecordQuery/accountRechargeAndRefundRecordQuery' // 账户充值退款记录查询
 import temporaryCarPaymentRecordQuery from './temporaryCarPaymentRecordQuery/temporaryCarPaymentRecordQuery' // 临时车缴费记录查询
+import appointmentRecordQuery from './appointmentRecordQuery/appointmentRecordQuery' // 预约记录查询
+
+
 
 export default {
     name: 'informationQuery',
@@ -49,7 +53,8 @@ export default {
         multiVehicleStatusQuery,
         carRentalRefundRecordQuery,
         accountRechargeAndRefundRecordQuery,
-        temporaryCarPaymentRecordQuery
+        temporaryCarPaymentRecordQuery,
+        appointmentRecordQuery
     },
     data () {
         return {

@@ -1,11 +1,11 @@
 /*
  * @Author: Wang Yuan 
- * @Date: 2021-02-24 14:56:12 
+ * @Date: 2021-02-24 15:21:52 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 15:24:11
+ * @Last Modified time: 2021-02-24 15:29:11
  */
 <template>
-    <div class="temporary-car-payment-record-query">
+    <div class="appointment-record-query">
         <div class="search-condition">
             <el-row>
                 <el-col :span="6">
@@ -15,15 +15,15 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <div class="condition-two condition">
-                        <div class="tip-span margin-top-bottom">卡号</div>
-                        <el-input size="small" v-model="cardNumber" placeholder="请输入卡号"></el-input>
+                    <div class="condition-one condition">
+                        <div class="tip-span margin-top-bottom">联系电话</div>
+                        <el-input size="small" v-model="phoneNumber" placeholder="联系电话"></el-input>
                     </div>
                 </el-col>
                 <el-col :span="6">
                     <div class="condition-three condition">
                         <div class="tip-span margin-top-bottom">停车库</div>
-                        <el-select v-model="parkingGarage" placeholder="请选择" size="small" style="width:90%">
+                        <el-select v-model="parkingGarage" placeholder="请选择" size="small" style="width:100%">
                             <el-option
                             v-for="item in parkingGarageOptions"
                             :key="item.value"
@@ -35,10 +35,10 @@
                 </el-col>
                 <el-col :span="6">
                     <div class="condition-three condition">
-                        <div class="tip-span margin-top-bottom">收费来源</div>
-                        <el-select v-model="incomeSource" placeholder="请选择" size="small" style="width:90%">
+                        <div class="tip-span margin-top-bottom">预约状态</div>
+                        <el-select v-model="reservationStatus" placeholder="请选择" size="small" style="width:100%">
                             <el-option
-                            v-for="item in incomeSourceOptions"
+                            v-for="item in reservationStatusOptions"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -47,44 +47,8 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-row>
-               <el-col :span="6">
-                    <div class="condition-four condition">
-                        <div class="tip-span margin-top-bottom">开始时间</div>
-                        <el-date-picker
-                            style="width:100%"
-                            v-model="startingTime"
-                            type="datetime"
-                            size="small"
-                            placeholder="选择开始时间">
-                        </el-date-picker>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="condition-five condition">
-                        <div class="tip-span margin-top-bottom">结束时间</div>
-                        <el-date-picker style="width:100%"
-                            v-model="endingTime"
-                            type="datetime"
-                            size="small"
-                            placeholder="选择结束时间">
-                        </el-date-picker>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="condition-three condition">
-                        <div class="tip-span margin-top-bottom">收费方式</div>
-                        <el-select v-model="incomeAndExpenditureMethod" placeholder="请选择" size="small" style="width:100%">
-                            <el-option
-                            v-for="item in incomeAndExpenditureMethodOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </div>
-                </el-col>
-                <el-col :span="6" style="margin-top:40px;"> 
+            <el-row style="margin-top:10px;">
+                <el-col :span="24" style="padding-left:15px"> 
                     <el-button type="primary" size='small'>查询</el-button>
                     <el-button  size='small'>重置</el-button>
                 </el-col>
@@ -99,15 +63,14 @@
                 <el-col :span=23>
                     <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
                         <el-table-column prop="tLicenseNum" label="车牌号码"></el-table-column>
-                        <el-table-column prop="tParkingLot" label="卡号"></el-table-column>
-                        <el-table-column prop="tParkingStatus" label="入场时间"></el-table-column>
-                        <el-table-column prop="tLeaveTime" label="出入口"></el-table-column>
-                        <el-table-column prop="tFloor" label="缴费时间"></el-table-column>
-                        <el-table-column prop="tFloor" label="停车时长"></el-table-column>
-                        <el-table-column prop="tFloor" label="总金额"></el-table-column>
-                        <el-table-column prop="tFloor" label="优惠金额"></el-table-column>
-                        <el-table-column prop="tFloor" label="应收金额"></el-table-column>
-                        <el-table-column prop="tFloor" label="应收金额"></el-table-column>
+                        <el-table-column prop="tParkingLot" label="联系人"></el-table-column>
+                        <el-table-column prop="tParkingStatus" label="联系电话"></el-table-column>
+                        <el-table-column prop="tLeaveTime" label="预约时间"></el-table-column>
+                        <el-table-column prop="tFloor" label="停车库"></el-table-column>
+                        <el-table-column prop="tFloor" label="预约状态"></el-table-column>
+                        <el-table-column prop="tFloor" label="允许进入次数"></el-table-column>
+                        <el-table-column prop="tFloor" label="是否收费"></el-table-column>
+                        <el-table-column prop="tFloor" label="预约来源"></el-table-column>
                     </el-table>
                 </el-col>
             </el-row>
@@ -131,24 +94,16 @@
 </template>
 <script>
 export default {
-    name: 'temporaryCarPaymentRecordQuery',
+    name: 'appointmentRecordQuery',
     data () {
         return {
             currentPage: 1,
+
             tableData: [],
-            startingTime: '',
-            endingTime: '',
             licensePlateNumber: '',
-            cardNumber: '',
-            incomeAndExpenditureMethod: '0',
-            incomeAndExpenditureMethodOptions: [
-                {
-                    value: '0',
-                    label: '全部'
-                }
-            ],
-            incomeSource: '0',
-            incomeSourceOptions: [
+            phoneNumber: '',
+            reservationStatus: '0',
+            reservationStatusOptions: [
                 {
                     value: '0',
                     label: '全部'
@@ -187,7 +142,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .temporary-car-payment-record-query {
+    .appointment-record-query {
         .search-condition{
             width: 100%;
             min-width: 100px;
