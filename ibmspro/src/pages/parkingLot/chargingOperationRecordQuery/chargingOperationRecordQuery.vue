@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 16:43:59 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 16:55:40
+ * @Last Modified time: 2021-02-24 21:22:45
  */
 <template>
     <div class="chargin-operation-record-query">
@@ -15,28 +15,28 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
-                        <div class="condition-two condition">
-                            <div class="tip-span margin-top-bottom">开始时间</div>
-                            <el-date-picker
-                                style="width:100%"
-                                v-model="startingTime"
-                                type="datetime"
-                                size="small"
-                                placeholder="选择开始时间">
-                            </el-date-picker>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="condition-three condition">
-                            <div class="tip-span margin-top-bottom">结束时间</div>
-                            <el-date-picker style="width:100%"
-                                v-model="endingTime"
-                                type="datetime"
-                                size="small"
-                                placeholder="选择结束时间">
-                            </el-date-picker>
-                        </div>
-                    </el-col>
+                    <div class="condition-two condition">
+                        <div class="tip-span margin-top-bottom">开始时间</div>
+                        <el-date-picker
+                            style="width:100%"
+                            v-model="startingTime"
+                            type="datetime"
+                            size="small"
+                            placeholder="选择开始时间">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="condition-three condition">
+                        <div class="tip-span margin-top-bottom">结束时间</div>
+                        <el-date-picker style="width:100%"
+                            v-model="endingTime"
+                            type="datetime"
+                            size="small"
+                            placeholder="选择结束时间">
+                        </el-date-picker>
+                    </div>
+                </el-col>
                     <el-col :span="6">
                     <div class="condition-four condition">
                         <div class="tip-span margin-top-bottom">操作员</div>
