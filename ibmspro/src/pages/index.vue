@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 21:25:28
+ * @Last Modified time: 2021-02-24 21:50:39
  */
 <template>
     <div class="IMBS_APP APP">
@@ -89,6 +89,7 @@ export default {
     },
     methods: {
         controlMenu (routerName) {
+            sessionStorage.setItem('routerName', routerName)
             if (routerName === 'informationQuery') {
                 this.defaultActive = '1-1'
             }
@@ -104,11 +105,16 @@ export default {
             if (routerName === 'equipmentEvent') {
                 this.defaultActive = '3-1-3'
             }
+            if (routerName === 'personnaIssuing') {
+                this.defaultActive = '3-2'
+            }
         },
         handleSelect(key, keyPath) {
+            let currentPath = this.$route.path
+            sessionStorage.setItem('currentPath', currentPath)
             if (key == '1-1') {
                 let path = '/vehicleControlConfigModule/informationQuery'
-                if (this.$route.path !== path) {
+                if (currentPath !== path) {
                     this.$router.push({
                         path: path
                     })
@@ -116,7 +122,7 @@ export default {
             }
             if (key == '2-1') {
                 let path = '/vehicleControlConfigModule/alarmDetection'
-                if (this.$route.path !== path) {
+                if (currentPath !== path) {
                     this.$router.push({
                         path: path
                     })
@@ -124,7 +130,7 @@ export default {
             }
             if (key == '3-1-1') {
                 let path = '/vehicleControlConfigModule/onePass/accessControl/permissionConfigComprehensiveQuery'
-                if (this.$route.path !== path) {
+                if (currentPath !== path) {
                     this.$router.push({
                         path: path
                     })
@@ -132,7 +138,7 @@ export default {
             }
             if (key == '3-1-2') {
                 let path = '/vehicleControlConfigModule/onePass/accessControl/permissionDownloadRecord'
-                if (this.$route.path !== path) {
+                if (currentPath !== path) {
                     this.$router.push({
                         path: path
                     })
@@ -140,7 +146,15 @@ export default {
             }
             if (key == '3-1-3') {
                 let path = '/vehicleControlConfigModule/onePass/accessControl/equipmentEvent'
-                if (this.$route.path !== path) {
+                if (currentPath !== path) {
+                    this.$router.push({
+                        path: path
+                    })
+                }
+            }
+            if (key == '3-2') {
+                let path = '/vehicleControlConfigModule/onePass/personnaIssuing'
+                if (currentPath !== path) {
                     this.$router.push({
                         path: path
                     })

@@ -25,6 +25,8 @@ import permissionConfigComprehensiveQuery from '@pages/onePass/accessControl/per
 import permissionDownloadRecord from '@pages/onePass/accessControl/permissionDownloadRecord/permissionDownloadRecord'
 // 一卡通--门禁管理--设备事件
 import equipmentEvent from '@pages/onePass/accessControl/equipmentEvent/equipmentEvent'
+// 一卡通--人员发卡
+import personnaIssuing from '@pages/onePass/personneIssuing/personnaIssuing'
 
 Vue.use(Router)
 
@@ -84,6 +86,12 @@ export default new Router({
                   component: equipmentEvent,
                 }
               ]
+            },
+            {
+              path: 'personnaIssuing',
+              name: 'personnaIssuing',
+              meta: { showTitle: true, title: '一卡通', subTitle: '人员发卡', currentPageTitle: '' },
+              component: personnaIssuing,
             }
           ]
         },
