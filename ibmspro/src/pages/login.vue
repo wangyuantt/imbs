@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-22 17:52:33 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 12:37:16
+ * @Last Modified time: 2021-02-24 23:37:45
  */
 <template>
     <div class="login">
@@ -44,7 +44,7 @@ export default {
                 this.formLoading = false
                 if (res.code) {
                     this.$router.push({
-                        path: '/index'
+                        path: '/imbsPlatform/informationQuery'
                     })
                 }
             })
