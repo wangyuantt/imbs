@@ -2,10 +2,24 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 10:45:37 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 14:22:05
+ * @Last Modified time: 2021-02-24 14:35:32
  */
 <template>
     <div class="car-rental-refund-record-query">
+        <el-dialog title="包年" :visible.sync="dialogVisible" width="30%">
+            <div>
+                <span>车辆类型：</span>
+                <span class="tip-span">全部</span>
+            </div>
+            <div style="padding:10px 0">
+                <span>包期类型：</span>
+                <span class="tip-span">全部</span>
+            </div>
+            <div>
+                <span>包期数量：</span>
+                <span class="tip-span">1</span>
+            </div>
+        </el-dialog>
             <div class="search-condition">
                 <el-row>
                     <el-col :span="6">
@@ -123,8 +137,8 @@
                             <el-table-column prop="tFloor" label="操作时间"></el-table-column>
                             <el-table-column prop="tFloor" label="操作员"></el-table-column>
                             <el-table-column prop="tFloor" label="详情">
-                                <template>
-                                    <span class="iconfont">&#xe600;</span>
+                                <template slot-scope='scope'>
+                                    <span class="iconfont pointer" @click="detail(scope.row)">&#xe600;</span>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -146,19 +160,28 @@
                     </el-col>
                 </el-row>
             </div>
-        </div>
+     </div>
 </template>
 <script>
 export default {
     name: 'carRentalRefundRecordQuery',
     data () {
         return {
+            dialogVisible: false,
+            currentPage: 1,
             licensePlateNumber: '',
             startingTime: '',
             endingTime: '',
             cardNumber: '',
             operator: '0',
-            tableData: [],
+            tableData: [
+                {
+                    tLicenseNum: '浙A88888',
+                    tParkingLot: '南苑',
+                    tParkingStatus: '退款',
+                    tFloor: '10010'
+                }
+            ],
             operatorOptions: [
                 {
                     value: '0',
@@ -220,6 +243,18 @@ export default {
                 }
             ]
 
+        }
+    },
+    methods: {
+        handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+        },
+        detail (row) {
+            console.log(row)
+            this.dialogVisible = true
         }
     }
 }
