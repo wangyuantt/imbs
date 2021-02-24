@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 20:53:51
+ * @Last Modified time: 2021-02-24 21:25:28
  */
 <template>
     <div class="IMBS_APP APP">
@@ -42,6 +42,7 @@
                                         <template slot="title">门禁管理</template>
                                         <el-menu-item index="3-1-1">权限配置综合查询</el-menu-item>
                                         <el-menu-item index="3-1-2">权限下载记录</el-menu-item>
+                                        <el-menu-item index="3-1-3">设备事件</el-menu-item>
                                     </el-submenu>
                                 <el-menu-item index="3-2">人员发卡</el-menu-item>
                                 <el-menu-item index="3-3">访客管理</el-menu-item>
@@ -100,6 +101,9 @@ export default {
             if (routerName === 'permissionDownloadRecord') {
                 this.defaultActive = '3-1-2'
             }
+            if (routerName === 'equipmentEvent') {
+                this.defaultActive = '3-1-3'
+            }
         },
         handleSelect(key, keyPath) {
             if (key == '1-1') {
@@ -128,6 +132,14 @@ export default {
             }
             if (key == '3-1-2') {
                 let path = '/vehicleControlConfigModule/onePass/accessControl/permissionDownloadRecord'
+                if (this.$route.path !== path) {
+                    this.$router.push({
+                        path: path
+                    })
+                }
+            }
+            if (key == '3-1-3') {
+                let path = '/vehicleControlConfigModule/onePass/accessControl/equipmentEvent'
                 if (this.$route.path !== path) {
                     this.$router.push({
                         path: path

@@ -23,6 +23,9 @@ import accessControl from '@pages/onePass/accessControl/accessControl'
 import permissionConfigComprehensiveQuery from '@pages/onePass/accessControl/permissionConfigComprehensiveQuery/permissionConfigComprehensiveQuery'
 // 一卡通--门禁管理--权限下载记录
 import permissionDownloadRecord from '@pages/onePass/accessControl/permissionDownloadRecord/permissionDownloadRecord'
+// 一卡通--门禁管理--设备事件
+import equipmentEvent from '@pages/onePass/accessControl/equipmentEvent/equipmentEvent'
+
 Vue.use(Router)
 
 export default new Router({
@@ -73,6 +76,12 @@ export default new Router({
                   name: 'permissionDownloadRecord',
                   meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '权限下载记录' },
                   component: permissionDownloadRecord,
+                },
+                {
+                  path: 'equipmentEvent',
+                  name: 'equipmentEvent',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '设备事件' },
+                  component: equipmentEvent,
                 }
               ]
             }
