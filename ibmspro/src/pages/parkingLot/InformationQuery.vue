@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 16:42:26
+ * @Last Modified time: 2021-02-24 16:47:58
  */
 <template>
     <div class="information-query">
@@ -30,6 +30,7 @@
                 <appointmentRecordQuery v-if="itemActive === 7" />
                 <couponRecordQuery v-if="itemActive === 8" />
                 <shiftRecordQuery v-if="itemActive === 9" />
+                <chargingOperationRecordQuery v-if="itemActive === 10" />
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@ import temporaryCarPaymentRecordQuery from './temporaryCarPaymentRecordQuery/tem
 import appointmentRecordQuery from './appointmentRecordQuery/appointmentRecordQuery' // 预约记录查询
 import couponRecordQuery from './couponRecordQuery/couponRecordQuery'
 import shiftRecordQuery from './shiftRecordQuery/shiftRecordQuery'
-
+import chargingOperationRecordQuery from './chargingOperationRecordQuery/chargingOperationRecordQuery'
 export default {
     name: 'informationQuery',
     components: {
@@ -58,7 +59,8 @@ export default {
         temporaryCarPaymentRecordQuery,
         appointmentRecordQuery,
         couponRecordQuery,
-        shiftRecordQuery
+        shiftRecordQuery,
+        chargingOperationRecordQuery
     },
     data () {
         return {
