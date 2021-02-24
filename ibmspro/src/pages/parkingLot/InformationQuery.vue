@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 16:47:58
+ * @Last Modified time: 2021-02-24 17:06:52
  */
 <template>
     <div class="information-query">
@@ -92,6 +92,14 @@ export default {
             ]
         }
     },
+    mounted () {
+        let menuIndex = sessionStorage.getItem('informationQueryMenuIndex')
+        if (menuIndex) {
+            this.itemActive = Number(menuIndex)
+        } else {
+            sessionStorage.setItem('informationQueryMenuIndex', this.itemActive)
+        }
+    },
     computed: {
         navTitle () {
             let meta = this.$route.meta
@@ -101,6 +109,7 @@ export default {
     methods: {
         switemItem (index) {
             this.itemActive = index
+            sessionStorage.setItem('informationQueryMenuIndex', index)
         }
     }
 }
