@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 14:43:38 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 18:34:20
+ * @Last Modified time: 2021-02-24 20:45:44
  */
 <template>
     <div class="IMBS_APP APP">
@@ -15,6 +15,7 @@
                             :default-active="defaultActive"
                             class="el-menu-vertical-demo"
                             @select="handleSelect"
+                            unique-opened
                             background-color="#1a1a1a"
                             text-color="#958f8f"
                             active-text-color="#fff">
@@ -31,6 +32,26 @@
                                     <span>报警检测</span>
                                 </template>
                                 <el-menu-item index="2-1">入侵报警</el-menu-item>
+                            </el-submenu>
+                            <el-submenu index="3">
+                                <template slot="title">
+                                    <i class="el-icon-postcard"></i>
+                                    <span>一卡通</span>
+                                </template>
+                                <el-submenu index="3-1">
+                                        <template slot="title">门禁管理</template>
+                                        <el-menu-item index="3-1-1">权限配置综合查询</el-menu-item>
+                                    </el-submenu>
+                                    
+                                <el-menu-item index="3-2">人员发卡</el-menu-item>
+                                <el-menu-item index="3-3">访客管理</el-menu-item>
+                            </el-submenu>
+                            <el-submenu index="4">
+                                <template slot="title">
+                                    <i class="el-icon-view"></i>
+                                    <span>视频监控</span>
+                                </template>
+                                <el-menu-item index="4-1">实时预览</el-menu-item>
                             </el-submenu>
                         </el-menu>
                     </el-col>
@@ -57,6 +78,7 @@ export default {
         }
     },
     mounted () {
+        console.log(this.$route)
         this.controlMenu(this.$route.name)
     },
     watch: {
@@ -72,6 +94,9 @@ export default {
             if (routerName === 'alarmDetection') {
                 this.defaultActive = '2-1'
             }
+            if (routerName === 'permissionConfigComprehensiveQuery') {
+                this.defaultActive = '3-1-1'
+            }
         },
         handleSelect(key, keyPath) {
             if (key == '1-1') {
@@ -84,6 +109,14 @@ export default {
             }
             if (key == '2-1') {
                 let path = '/vehicleControlConfigModule/alarmDetection'
+                if (this.$route.path !== path) {
+                    this.$router.push({
+                        path: path
+                    })
+                }
+            }
+            if (key == '3-1-1') {
+                let path = '/vehicleControlConfigModule/onePass/accessControl/permissionConfigComprehensiveQuery'
                 if (this.$route.path !== path) {
                     this.$router.push({
                         path: path

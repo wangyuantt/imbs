@@ -15,6 +15,13 @@ import informationQuery from '@pages/parkingLot/InformationQuery'
 // 报警检测-入侵报警
 import alarmDetection from '@pages/alarmDetection/alarmDetection'
 
+// 一卡通
+import onePass from '@pages/onePass/onePass'
+// 一卡通--门禁管理
+import accessControl from '@pages/onePass/accessControl/accessControl'
+// 一卡通--门禁管理--权限配置综合查询
+import permissionConfigComprehensiveQuery from '@pages/onePass/accessControl/permissionConfigComprehensiveQuery/permissionConfigComprehensiveQuery'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +48,28 @@ export default new Router({
           name: 'informationQuery',
           meta: { showTitle: true, title: '停车场', subTitle: '', currentPageTitle: '信息查询' },
           component: informationQuery,
+        },
+        {
+          path: 'onePass',
+          name: 'onePass',
+          meta: { showTitle: true, title: '一卡通', subTitle: '', currentPageTitle: '' },
+          component: onePass,
+          children: [
+            {
+              path: 'accessControl',
+              name: 'accessControl',
+              meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '' },
+              component: accessControl,
+              children: [
+                {
+                  path: 'permissionConfigComprehensiveQuery',
+                  name: 'permissionConfigComprehensiveQuery',
+                  meta: { showTitle: true, title: '一卡通', subTitle: '门禁管理', currentPageTitle: '权限配置综合查询' },
+                  component: permissionConfigComprehensiveQuery,
+                }
+              ]
+            }
+          ]
         },
         {
           path: 'vehicleControlConfig',
