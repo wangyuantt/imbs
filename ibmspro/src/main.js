@@ -17,6 +17,9 @@ import './assets/iconfont/iconfont.css'
 // Axos基本请求
 import $vueHttp from './axiosRequest/axiosRequest'
 
+import * as filters from './filter/filter'
+import $util from './utils/utils'
+
 //模块化API请求
 import * as $commonAPI from './api/commonAPI/commonApi'
 import * as $parkingLotAPI from './api/parkingLotAPI/InfoQueryApi'
@@ -25,9 +28,14 @@ Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+Vue.prototype.$util = $util
 Vue.prototype.$vueHttp = $vueHttp
 Vue.prototype.$commonAPI = $commonAPI
 Vue.prototype.$parkingLotAPI = $parkingLotAPI
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key,filters[key])
+})
 
 /* eslint-disable no-new */
 new Vue({
