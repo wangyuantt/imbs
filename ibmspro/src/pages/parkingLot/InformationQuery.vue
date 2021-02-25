@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 23:28:54
+ * @Last Modified time: 2021-02-25 23:54:39
  */
 <template>
     <div class="information-query">
@@ -156,7 +156,7 @@ export default {
             width: 100%;
             height: calc(100% - 34px);
             .information-query-aside {
-                width: 300px;
+                width: 250px;
                 height: 100%;
                 border-right: 1px solid #f3f5f7;
                 box-sizing: border-box;
@@ -176,7 +176,7 @@ export default {
                 }
             }
             .information-query-main {
-                width: calc(100% - 300px);
+                width: calc(100% - 250px);
                 height: 100%
             }
         }
