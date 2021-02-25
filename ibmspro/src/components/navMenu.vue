@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:49:01 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 23:26:28
+ * @Last Modified time: 2021-02-25 23:34:52
  */
 <template>
     <div class="aside menu am">
@@ -75,7 +75,6 @@ export default {
         }
     },
     mounted () {
-        console.log(this.navMenuList, 'navMenuList')
         this.controlMenu(this.$route.name)
     },
     watch: {
