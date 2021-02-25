@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:27:49 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 17:06:52
+ * @Last Modified time: 2021-02-25 23:28:54
  */
 <template>
     <div class="information-query">
@@ -20,17 +20,9 @@
                 </el-row>
             </div>
             <div class="information-query-main">
-                <passedVehicleRecordQuery v-if="itemActive === 0" />
-                <vehicleQueryWarehouse v-if="itemActive === 1" />
-                <berthRecordQuery v-if="itemActive === 2" />
-                <multiVehicleStatusQuery v-if="itemActive === 3" />
-                <carRentalRefundRecordQuery v-if="itemActive === 4" />
-                <accountRechargeAndRefundRecordQuery v-if="itemActive === 5" />
-                <temporaryCarPaymentRecordQuery v-if="itemActive === 6" />
-                <appointmentRecordQuery v-if="itemActive === 7" />
-                <couponRecordQuery v-if="itemActive === 8" />
-                <shiftRecordQuery v-if="itemActive === 9" />
-                <chargingOperationRecordQuery v-if="itemActive === 10" />
+                <keep-alive>
+                    <component :is="currentComponentName"></component>
+                </keep-alive>
             </div>
         </div>
     </div>
@@ -65,28 +57,51 @@ export default {
     data () {
         return {
             itemActive: 0,
+            currentComponentName: 'passedVehicleRecordQuery',
             asideArr: [
                 {
+                    index: 0,
+                    coomponentName: 'passedVehicleRecordQuery',
                     name: '过车记录查询'
                 },{
+                    index: 1,
+                    coomponentName: 'vehicleQueryWarehouse',
                     name: '库内车辆查询'
                 },{
+                    index: 2,
+                    coomponentName: 'berthRecordQuery',
                     name: '泊位记录查询'
                 },{
+                    index: 3,
+                    coomponentName: 'multiVehicleStatusQuery',
                     name: '一户多车状态查寻'
                 },{
+                    index: 4,
+                    coomponentName: 'carRentalRefundRecordQuery',
                     name: '车辆包期退款记录查询'
                 },{
+                    index: 5,
+                    coomponentName: 'accountRechargeAndRefundRecordQuery',
                     name: '账户充值退款记录查询'
                 },{
+                    index: 6,
+                    coomponentName: 'temporaryCarPaymentRecordQuery',
                     name: '临时车缴费记录查询'
                 },{
+                    index: 7,
+                    coomponentName: 'appointmentRecordQuery',
                     name: '预约记录查询'
                 },{
+                    index: 8,
+                    coomponentName: 'couponRecordQuery',
                     name: '优惠卷记录查询'
                 },{
+                    index: 9,
+                    coomponentName: 'shiftRecordQuery',
                     name: '班次记录查询'
                 },{
+                    index: 10,
+                    coomponentName: 'chargingOperationRecordQuery',
                     name: '收费操作记录查询'
                 }
             ]
@@ -96,6 +111,7 @@ export default {
         let menuIndex = sessionStorage.getItem('informationQueryMenuIndex')
         if (menuIndex) {
             this.itemActive = Number(menuIndex)
+            this.changeComponent(this.itemActive)
         } else {
             sessionStorage.setItem('informationQueryMenuIndex', this.itemActive)
         }
@@ -109,7 +125,14 @@ export default {
     methods: {
         switemItem (index) {
             this.itemActive = index
+            this.changeComponent(index)
             sessionStorage.setItem('informationQueryMenuIndex', index)
+        },
+        changeComponent (index) {
+            let _component = this.asideArr.find(item => {
+                return item.index === index
+            })
+            this.currentComponentName = _component.coomponentName
         }
     }
 }
