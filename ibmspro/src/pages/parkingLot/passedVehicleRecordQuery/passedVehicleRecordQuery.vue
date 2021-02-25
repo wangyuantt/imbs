@@ -2,10 +2,11 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 22:37:48
+ * @Desc: 停车场--信息查询--过车记录查询
+ * @Last Modified time: 2021-02-25 20:21:57
  */
 <template>
-    <div class="passed-vehicler-ecord-query">
+    <div class="passed-vehicler-ecord-query pveq">
         <div class="search-condition">
             <el-row>
                 <el-col :span="6">
@@ -23,12 +24,12 @@
                 <el-col :span="6">
                     <div class="condition-three condition">
                         <div class="tip-span margin-top-bottom">停车库</div>
-                        <el-select v-model="parkingGarage" placeholder="请选择" size="small" style="width:90%">
+                        <el-select v-model="parkingGarage" @change="choseParkingGarage" placeholder="请选择" size="small" style="width:90%">
                             <el-option
                             v-for="item in parkingGarageOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
+                            :key="item.parkIndexCode"
+                            :label="item.parkName"
+                            :value="item.parkIndexCode">
                             </el-option>
                         </el-select>
                     </div>
@@ -63,9 +64,9 @@
                         <el-select v-model="entrance" placeholder="请选择" size="small" style="width:90%">
                             <el-option
                             v-for="item in entranceOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
+                            :key="item.parkIndexCode"
+                            :label="item.parkName"
+                            :value="item.parkIndexCode">
                             </el-option>
                         </el-select>
                     </div>
@@ -146,7 +147,6 @@ export default {
             cardNumber: '',
             startingTime: '',
             endingTime: '',
-            entrance: '0',
             currentPage: 1,
             tableData: [
                 {
@@ -424,43 +424,82 @@ export default {
                 }
 
             ],
+            entrance: '',
             entranceOptions: [
                 {
-                    value: '0',
-                    label: '全部'
-                },
-                {
-                    value: '1',
-                    label: '南苑停车场'
-                },
-                {
-                    value: '2',
-                    label: '东苑西门'
+                    parkIndexCode: '',
+                    parentParkIndexCode: null,
+                    parkName: '全部'
                 }
             ],
-            parkingGarage: '0',
+            parkingGarage: '',
             parkingGarageOptions: [
                 {
-                    value: '0',
-                    label: '全部'
-                },
-                {
-                    value: '1',
-                    label: '东苑'
-                },{
-                    value: '2',
-                    label: '南苑'
-                },{
-                    value: '3',
-                    label: '西苑'
-                },{
-                    value: '4',
-                    label: '北苑'
+                    parkIndexCode: '',
+                    parentParkIndexCode: null,
+                    parkName: '全部'
                 }
             ]
         }
     },
+    mounted () {
+        this.getConditionParams()
+    },  
     methods: {
+        getConditionParams () {
+            this.getParkList()
+        },
+        getParkList () {
+            let data = {
+                "parkIndexCodes": "" // 停车库唯一标识集合 7e09fddb66264eaab4146ef2d6dadbbb
+            }
+            this.$commonAPI.getParkList(data).then(res => {
+                if (res.code === 0) {
+                    if (res.data.code === '0') {
+                        if (res.data.data.length === 0) {
+                            this.parkingGarageOptions = []
+                        } else {
+                            this.parkingGarageOptions = this.parkingGarageOptions.concat(res.data.data)
+                        }
+                    } else {
+                        this.parkingGarageOptions = []
+                        this.$message.error(res.data.msg)
+                    }
+                } else {
+                    this.$message.error(res.msg)
+                }
+            })
+        },
+        choseParkingGarage (val) {
+            this.getEntranceList(val)
+        },
+        getEntranceList (parkIndexCodes) {
+            let data = {
+                "parkIndexCodes": parkIndexCodes // 停车场唯一标识集 多个值使用英文逗号分隔,不超过1000个，可通过获取停车库列表接口获取
+            }
+            this.entranceOptions = [{
+                    parkIndexCode: '',
+                    parentParkIndexCode: null,
+                    parkName: '全部'
+                }]
+            this.entrance  = ''
+            this.$commonAPI.getParkList(data).then(res => {
+                if (res.code === 0) {
+                    if (res.data.code === '0') {
+                        if (res.data.data.length === 0) {
+                            this.entranceOptions = []
+                        } else {
+                            this.entranceOptions = this.entranceOptions.concat(res.data.data)
+                        }
+                    } else {
+                        this.entranceOptions = []
+                        this.$message.error(res.data.msg)
+                    }
+                } else {
+                    this.$message.error(res.msg)
+                }
+            })
+        },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);
         },
