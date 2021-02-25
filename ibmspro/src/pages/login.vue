@@ -2,11 +2,11 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-22 17:52:33 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 14:52:46
+ * @Last Modified time: 2021-02-25 14:53:59
  */
 <template>
     <div class="login full-page flex-center">
-        <div class="login-action"  v-loading="formLoading">
+        <div class="login-action"  v-loading="formLoading" element-loading-text="登录中...">
             <el-row>
                 <el-col :span="23">
                     <el-form status-icon ref="ruleForm" label-width="100px" class="demo-ruleForm">
