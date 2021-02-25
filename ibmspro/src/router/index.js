@@ -53,7 +53,18 @@ export default new Router({
       path: '/',
       alias: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        if (to.name === 'Login') {
+          if (sessionStorage.getItem('token') === null) {
+            next()
+          } else {
+            next({ path: from.path })
+          }
+        } else {
+          next()
+        }
+      }
     },
     {
       path: '/imbsPlatform',

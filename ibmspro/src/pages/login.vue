@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-22 17:52:33 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 14:53:59
+ * @Last Modified time: 2021-02-25 15:00:51
  */
 <template>
     <div class="login full-page flex-center">
@@ -21,6 +21,9 @@
                         </el-form-item>
                     </el-form>
                 </el-col>
+                <!-- <el-col :span='23' style="text-align: end;padding-right:20px">
+                    <el-link type="primary">去注册</el-link>
+                </el-col> -->
             </el-row>
         </div>
     </div>
@@ -44,8 +47,8 @@ export default {
             }
             this.$vueHttp.post('/app/login', data).then(res => {
                 this.formLoading = false
-                if (res.code === 200) {
-                    sessionStorage.setItem('loginFlag', true)
+                if (res.code === 0) {
+                    sessionStorage.setItem('token', res.token)
                     this.$router.push({
                         path: '/imbsPlatform/informationQuery'
                     })
