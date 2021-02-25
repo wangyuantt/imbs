@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-25 22:38:33
+ * @Last Modified time: 2021-02-25 23:34:54
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
@@ -52,6 +52,7 @@
                     <div class="condition-five condition">
                         <div class="tip-span margin-top-bottom">结束时间</div>
                         <el-date-picker
+                            @change='choseEndTime'
                             v-model="endingTime"
                             type="datetime"
                             size="small"
@@ -73,8 +74,8 @@
                     </div>
                 </el-col>
                 <el-col :span="12" style="margin-top:40px">
-                    <el-button size='small' type="primary">查询</el-button>
-                    <el-button size='small'>重置</el-button>
+                    <el-button size='small' type="primary" @click="queryBtnAction" :disabled="queryBtnSttus">查询</el-button>
+                    <el-button size='small' @click="clearAllCondition">重置</el-button>
                 </el-col>
             </el-row>
         </div>
@@ -85,7 +86,7 @@
         <div class="table">
             <el-row type="flex" justify="center">
                 <el-col :span=23>
-                    <el-table v-loading="tableLoading" element-loading-text="加载中..." :data="tableData" border style="width: 100%" height="600" max-height='600'>
+                    <el-table v-loading="tableLoading" element-loading-text="正在查询..." :data="tableData" border style="width: 100%" height="600" max-height='600'>
                         <el-table-column fixed prop="plateNo" label="车牌号码"></el-table-column>
                         <el-table-column prop="cardNo" label="卡号"></el-table-column>
                         <el-table-column prop="vehicleType" label="车辆类型">
@@ -172,6 +173,7 @@ export default {
             currentPage: 1,
             pageSize: 20,
             total: 0,
+            queryBtnSttus: false,
             tableLoading: false,
             tableData: [],
             entrance: '',
@@ -197,6 +199,18 @@ export default {
         this.gerRecordTableList()
     },  
     methods: {
+        queryBtnAction () {
+            this.queryBtnSttus = true
+            this.gerRecordTableList()
+        },
+        clearAllCondition () {
+            this.licensePlateNumber = ''
+            this.cardNumber = ''
+            this.startingTime = ''
+            this.endingTime = ''
+            this.entrance = ''
+            this.parkingGarage = ''
+        },
         gerRecordTableList () {
             this.tableLoading = true
             let data = {
@@ -204,9 +218,9 @@ export default {
                 entranceSyscode: this.entrance, // 出入口唯一标识
                 plateNo: this.licensePlateNumber, // 车牌
                 cardNo: this.cardNumber, // 卡号
-                startTime: this.startingTime === '' ? '' : this.$util.UTCToISO8601(this.startingTime), // 查询开始时间  SO8601格式：yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：2018-07-26T15:00:00+08:00
-                endTime: this.endingTime === '' ? '' : this.$util.UTCToISO8601(this.endingTime), // 查询结束时间 
-                pageNo: 1, // true
+                startTime: this.startingTime, // 查询开始时间  SO8601格式：yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：2018-07-26T15:00:00+08:00
+                endTime: this.endingTime, // 查询结束时间 
+                pageNo: this.currentPage, // true
                 pageSize: this.pageSize, // true (0, 1000]
                 // vehicleOut: '', // 进出场标识 0:进场，1:出场
                 // vehicleType: '', // 车辆类型 0：其他车 1：小型车 2：大型车 3：摩托车
@@ -217,6 +231,7 @@ export default {
             }
             this.$parkingLotAPI.passedVehRecQry(data).then(res => {
                 this.tableLoading = false
+                this.queryBtnSttus = false
                 if (res.code === 0) {
                     if (res.data.code === '0') {
                         this.total = res.data.data.total
@@ -228,12 +243,15 @@ export default {
                 } else {
                     this.$message.error(res.msg)
                 } 
-                console.log(res, 'passedVehRecQry')
             })
         },
-        choseStratTime (val) {
-            // this.$util.UTCToISO8601(this.startingTime)
-            console.log(this.$moment(this.startingTime).format())
+        choseStratTime () {
+            let _startTime = this.$moment(this.startingTime).format()
+            this.startingTime = _startTime
+        },
+        choseEndTime () {
+            let _endTime = this.$moment(this.endingTime).format()
+            this.endingTime = _endTime
         },
         getConditionParams () {
             this.getParkList()
@@ -290,10 +308,12 @@ export default {
             })
         },
         handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+            this.pageSize = val
+            this.gerRecordTableList()
         },
         handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
+            this.currentPage = val
+            this.gerRecordTableList()
         }
     }
 }
