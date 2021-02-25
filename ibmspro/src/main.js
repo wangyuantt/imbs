@@ -19,6 +19,7 @@ import $vueHttp from './axiosRequest/axiosRequest'
 
 import * as filters from './filter/filter'
 import $util from './utils/utils'
+import moment from 'moment'
 
 //模块化API请求
 import * as $commonAPI from './api/commonAPI/commonApi'
@@ -29,6 +30,7 @@ Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 
 Vue.config.productionTip = false
 Vue.prototype.$util = $util
+Vue.prototype.$moment = moment
 Vue.prototype.$vueHttp = $vueHttp
 Vue.prototype.$commonAPI = $commonAPI
 Vue.prototype.$parkingLotAPI = $parkingLotAPI
