@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-25 20:21:57
+ * @Last Modified time: 2021-02-25 22:38:33
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
@@ -38,6 +38,7 @@
                     <div class="condition-four condition">
                         <div class="tip-span margin-top-bottom">开始时间</div>
                         <el-date-picker
+                            @change='choseStratTime'
                             v-model="startingTime"
                             type="datetime"
                             size="small"
@@ -84,10 +85,14 @@
         <div class="table">
             <el-row type="flex" justify="center">
                 <el-col :span=23>
-                    <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
-                        <el-table-column prop="tLicenseNum" label="车牌号码"></el-table-column>
-                        <el-table-column prop="tCardNum" label="卡号"></el-table-column>
-                        <el-table-column prop="tLicensePicture" label="车辆类型"></el-table-column>
+                    <el-table v-loading="tableLoading" element-loading-text="加载中..." :data="tableData" border style="width: 100%" height="600" max-height='600'>
+                        <el-table-column fixed prop="plateNo" label="车牌号码"></el-table-column>
+                        <el-table-column prop="cardNo" label="卡号"></el-table-column>
+                        <el-table-column prop="vehicleType" label="车辆类型">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.vehicleType | vehicleType}}</span>
+                            </template>
+                        </el-table-column>
                         <el-table-column prop="tCarType" label="车牌图片">
                             <template>
                                 <el-image
@@ -110,12 +115,28 @@
                                 </el-image>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="tPassingTime" label="通过时间"></el-table-column>
-                        <el-table-column prop="tParkingLot" label="停车库"></el-table-column>
-                        <el-table-column prop="tEnter" label="出入口"></el-table-column>
-                        <el-table-column prop="tPassingDirection" label="过车方向"></el-table-column>
-                        <el-table-column prop="tReleaseResult" label="放行结果"></el-table-column>
-                        <el-table-column prop="tReleaseMethod" label="放行方式"></el-table-column>
+                        <el-table-column prop="crossTime" label="通过时间" width="150">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.crossTime | ISO8601Format }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="parkName" label="停车库"></el-table-column>
+                        <el-table-column prop="entranceName" label="出入口"></el-table-column>
+                        <el-table-column prop="vehicleOut" label="过车方向">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.vehicleOut | vehicleOut}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="releaseResult" label="放行结果">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.releaseResult | releaseResult}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="releaseWay" label="放行方式">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.releaseWay | releaseWay}}</span>
+                            </template>
+                        </el-table-column>
                     </el-table>
                 </el-col>
             </el-row>
@@ -127,10 +148,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[20, 40, 80, 100]"
+                        :page-size="pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="4000">
+                        :total="total">
                     </el-pagination>
                 </el-col>
             </el-row>
@@ -139,6 +160,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
     name: 'passedVehicleRecordQuery',
     data () {
@@ -148,282 +170,10 @@ export default {
             startingTime: '',
             endingTime: '',
             currentPage: 1,
-            tableData: [
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                },
-                {
-                    tLicenseNum: '浙A88888',
-                    tCardNum: '1234567890',
-                    tCarType: '其他车',
-                    tLicensePicture: '',
-                    tSnapPicture: '',
-                    tPassingTime: '2020-02-05 10:42:33',
-                    tParkingLot: '东苑',
-                    tEnter: '南苑停车场',
-                    tPassingDirection: '入库',
-                    tReleaseResult: '正常放行',
-                    tReleaseMethod: '自动开闸'
-                }
-
-            ],
+            pageSize: 20,
+            total: 0,
+            tableLoading: false,
+            tableData: [],
             entrance: '',
             entranceOptions: [
                 {
@@ -444,8 +194,47 @@ export default {
     },
     mounted () {
         this.getConditionParams()
+        this.gerRecordTableList()
     },  
     methods: {
+        gerRecordTableList () {
+            this.tableLoading = true
+            let data = {
+                parkSyscode: this.parkingGarage, // 停车库唯一标识
+                entranceSyscode: this.entrance, // 出入口唯一标识
+                plateNo: this.licensePlateNumber, // 车牌
+                cardNo: this.cardNumber, // 卡号
+                startTime: this.startingTime === '' ? '' : this.$util.UTCToISO8601(this.startingTime), // 查询开始时间  SO8601格式：yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：2018-07-26T15:00:00+08:00
+                endTime: this.endingTime === '' ? '' : this.$util.UTCToISO8601(this.endingTime), // 查询结束时间 
+                pageNo: 1, // true
+                pageSize: this.pageSize, // true (0, 1000]
+                // vehicleOut: '', // 进出场标识 0:进场，1:出场
+                // vehicleType: '', // 车辆类型 0：其他车 1：小型车 2：大型车 3：摩托车
+                // releaseResult: '', // 放行结果 0-未放行 1-正常放行 2-离线放行
+                // releaseWay: '', // 放行方式 10-未开闸 11-自动开闸 12-人工/人工开闸 13-遥控器开闸
+                // releaseReason: '', // 放行原因 100-固定车自动放行 101-临时车自动放行 102-预约车自动放行 103-一户多车自动放行
+                // carCategory: '', // 车辆分类  9-黑名单 10-固定车 11-临时车 12-预约车 14-特殊车
+            }
+            this.$parkingLotAPI.passedVehRecQry(data).then(res => {
+                this.tableLoading = false
+                if (res.code === 0) {
+                    if (res.data.code === '0') {
+                        this.total = res.data.data.total
+                        this.tableData = res.data.data.list
+                    } else {
+                        this.tableData = []
+                        this.$message.error(res.data.msg)
+                    }
+                } else {
+                    this.$message.error(res.msg)
+                } 
+                console.log(res, 'passedVehRecQry')
+            })
+        },
+        choseStratTime (val) {
+            // this.$util.UTCToISO8601(this.startingTime)
+            console.log(this.$moment(this.startingTime).format())
+        },
         getConditionParams () {
             this.getParkList()
         },
