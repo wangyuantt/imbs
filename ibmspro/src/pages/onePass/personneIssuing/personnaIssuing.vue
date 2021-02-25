@@ -65,7 +65,7 @@
         <div class="table">
             <el-row type="flex" justify="center">
                 <el-col :span=23>
-                    <el-table :data="tableData" size='small' border style="width: 100%" height="600" max-height='600'>
+                    <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
                         <el-table-column prop="tLicenseNum" label="姓名"></el-table-column>
                         <el-table-column prop="tParkingLot" label="性别"></el-table-column>
                         <el-table-column prop="tParkingStatus" label="所属组织"></el-table-column>

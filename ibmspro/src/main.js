@@ -19,8 +19,8 @@ import $vueHttp from './axiosRequest/axiosRequest'
 //模块化API请求
 import * as $commonAPI from './api/commonAPI/commonApi'
 
-
-Vue.use(ElementUI)
+Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
+// Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 Vue.prototype.$vueHttp = $vueHttp
