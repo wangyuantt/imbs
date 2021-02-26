@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 14:37:28 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 14:54:07
+ * @Last Modified time: 2021-02-27 00:55:12
  */
 <template>
     <div class="account-recharge-and-refund-record-query">
@@ -153,10 +153,10 @@ export default {
                     label: '全部'
                 }
             ],
-            incomeAndExpenditureType: '',
+            incomeAndExpenditureType: null,
             incomeAndExpenditureTypeOptions: [
                 {
-                    value: '',
+                    value: null,
                     label: '全部'
                 },
                 {
@@ -168,10 +168,10 @@ export default {
                     label: '充值'
                 }
             ],
-            incomeAndExpenditureMethod: '',
+            incomeAndExpenditureMethod: null,
             incomeAndExpenditureMethodOptions: [
                 {
-                    value: '',
+                    value: null,
                     label: '全部'
                 },
                 {
