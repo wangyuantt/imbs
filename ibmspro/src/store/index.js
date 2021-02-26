@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-21 15:10:58 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 23:59:19
+ * @Last Modified time: 2021-02-26 23:23:01
  */
 
 import Vue from 'vue'
@@ -24,6 +24,11 @@ const store = new Vuex.Store({
                 index: '1-1',
                 name: 'informationQuery',
                 path: '/imbsPlatform/informationQuery'
+            },
+            {
+                index: '1-2',
+                name: 'vehicleInformationQuery',
+                path: '/imbsPlatform/vehicleInformationQuery'
             },
             {
                 index: '2-1',

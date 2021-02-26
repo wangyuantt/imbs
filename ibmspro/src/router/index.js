@@ -9,8 +9,10 @@ import vehicleControlConfig from '@pages/vehicleControlConfig/vehicleControlConf
 import parameterConfig from '@pages/vehicleControlConfig/parameterConfig/parameterConfig'
 import parkingGarage from '@pages/vehicleControlConfig/parkingGarage/parkingGarage'
 
-// 停车场-信息查询
+// 车辆管控 - 停车场信息查询
 import informationQuery from '@pages/parkingLot/InformationQuery'
+import vehicleInformationQuery from '@pages/parkingLot/vehicleInformationQuery/vehicleInformationQuery'
+
 
 // 报警检测-入侵报警
 import alarmDetection from '@pages/alarmDetection/alarmDetection'
@@ -53,18 +55,7 @@ export default new Router({
       path: '/',
       alias: '/login',
       name: 'Login',
-      component: Login,
-      beforeEnter: (to, from, next) => {
-        if (to.name === 'Login') {
-          if (sessionStorage.getItem('token') === null) {
-            next()
-          } else {
-            next({ path: from.path })
-          }
-        } else {
-          next()
-        }
-      }
+      component: Login
     },
     {
       path: '/imbsPlatform',
@@ -74,16 +65,22 @@ export default new Router({
       redirect:'/imbsPlatform/informationQuery',
       children: [
         {
+          path: 'informationQuery',
+          name: 'informationQuery',
+          meta: { showTitle: true, title: '车辆管控', subTitle: '', currentPageTitle: '停车场信息查询' },
+          component: informationQuery,
+        },
+        {
+          path: 'vehicleInformationQuery',
+          name: 'vehicleInformationQuery',
+          meta: { showTitle: true, title: '车辆管控', subTitle: '', currentPageTitle: '车辆信息查询' },
+          component: vehicleInformationQuery,
+        },
+        {
           path: 'alarmDetection',
           name: 'alarmDetection',
           meta: { showTitle: true, title: '报警检测', subTitle: '', currentPageTitle: '入侵报警' },
           component: alarmDetection,
-        },
-        {
-          path: 'informationQuery',
-          name: 'informationQuery',
-          meta: { showTitle: true, title: '停车场', subTitle: '', currentPageTitle: '信息查询' },
-          component: informationQuery,
         },
         {
           path: 'onePass',

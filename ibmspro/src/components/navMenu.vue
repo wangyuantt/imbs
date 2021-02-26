@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 21:49:01 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 23:34:52
+ * @Last Modified time: 2021-02-26 23:11:00
  */
 <template>
     <div class="aside menu am">
@@ -19,9 +19,10 @@
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-location"></i>
-                            <span>停车场</span>
+                            <span>车辆管控</span>
                         </template>
-                        <el-menu-item index="1-1">信息查询</el-menu-item>
+                        <el-menu-item index="1-1">停车场信息查询</el-menu-item>
+                        <el-menu-item index="1-2">车辆信息查询</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2">
                         <template slot="title">
