@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-26 14:53:59
+ * @Last Modified time: 2021-02-27 00:49:45
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
@@ -176,18 +176,18 @@ export default {
             queryBtnSttus: false,
             tableLoading: false,
             tableData: [],
-            entrance: '',
+            entrance: null,
             entranceOptions: [
                 {
-                    parkIndexCode: '',
+                    parkIndexCode: null,
                     parentParkIndexCode: null,
                     parkName: '全部'
                 }
             ],
-            parkingGarage: '',
+            parkingGarage: null,
             parkingGarageOptions: [
                 {
-                    parkIndexCode: '',
+                    parkIndexCode: null,
                     parentParkIndexCode: null,
                     parkName: '全部'
                 }
@@ -208,8 +208,8 @@ export default {
             this.cardNumber = ''
             this.startingTime = ''
             this.endingTime = ''
-            this.entrance = ''
-            this.parkingGarage = ''
+            this.entrance = null
+            this.parkingGarage = null
         },
         gerRecordTableList () {
             this.tableLoading = true
@@ -285,7 +285,7 @@ export default {
                 "parkIndexCodes": parkIndexCodes // 停车场唯一标识集 多个值使用英文逗号分隔,不超过1000个，可通过获取停车库列表接口获取
             }
             this.entranceOptions = [{
-                    parkIndexCode: '',
+                    parkIndexCode: null,
                     parentParkIndexCode: null,
                     parkName: '全部'
                 }]
