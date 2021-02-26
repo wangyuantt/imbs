@@ -11,7 +11,7 @@ import parkingGarage from '@pages/vehicleControlConfig/parkingGarage/parkingGara
 
 // 车辆管控 - 停车场信息查询
 import informationQuery from '@pages/parkingLot/InformationQuery'
-import vehicleInformationQuery from '@pages/parkingLot/vehicleInformationQuery/vehicleInformationQuery'
+import vehicleInformationQuery from '@pages/parkingLot/VehicleInformationQuery/VehicleInformationQuery'
 
 
 // 报警检测-入侵报警
