@@ -3,7 +3,7 @@
  * @Date: 2021-02-26 23:16:40 
  * @Desc: 车辆管控 -- 车辆信息查询
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-27 00:37:39
+ * @Last Modified time: 2021-02-27 00:45:14
  */
 <template>
     <div class="vehicle-information-query viq">
@@ -112,7 +112,7 @@
                         @current-change="handleCurrentChange"
                         :current-page="currentPage"
                         :page-sizes="[20, 40, 80, 100]"
-                        :page-size="pigeSize"
+                        :page-size="pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
                         :total="total">
                     </el-pagination>
@@ -129,7 +129,7 @@ export default {
             userName: '',
             licensePlateNumber: '',
             queryBtnSttus: false,
-            isBandPerson: 0,
+            isBandPerson: 1,
             isBandPersonOptions: [
                 {
                     value: 0,
@@ -140,10 +140,10 @@ export default {
                     label: '关联'
                 }
             ],
-            licensePlateType: '',
+            licensePlateType: null,
             licensePlateTypeOptions: [
                 {
-                    value: '',
+                    value: null,
                     label: '全部'
                 },
                 {
@@ -181,7 +181,7 @@ export default {
             ],
             vehicleTypeOptions: [
                 {
-                    value: '',
+                    value: null,
                     label: '全部'
                 },
                 {
@@ -201,10 +201,10 @@ export default {
                     label: '摩托车'
                 }
             ],
-            vehicleType: '',
+            vehicleType: null,
             tableData: [],
             currentPage: 1,
-            pigeSize: 20,
+            pageSize: 20,
             total: 0,
             tableLoading: false
         }
@@ -222,9 +222,9 @@ export default {
         clearAllCondition () {
             this.userName = ''
             this.licensePlateNumber = ''
-            this.licensePlateType = ''
+            this.licensePlateType = null
             this.isBandPerson = 0
-            this.vehicleType = ''
+            this.vehicleType = null
         },
         queryBtnAction () {
             this.queryBtnSttus = true
@@ -237,7 +237,7 @@ export default {
                 "plateNo": this.licensePlateNumber,
                 "plateType": this.licensePlateType, // 车牌类型
                 "pageNo": this.currentPage,
-                "pageSize": this.pigeSize,
+                "pageSize": this.pageSize,
                 "isBandPerson": this.isBandPerson, // 车辆是否和人员绑定，带有人员信息；0:不关联；1:关联
                 "vehicleType": this.vehicleType // 车辆类型
             }
