@@ -24,6 +24,7 @@ import moment from 'moment'
 //模块化API请求
 import * as $commonAPI from './api/commonAPI/commonApi'
 import * as $parkingLotAPI from './api/parkingLotAPI/InfoQueryApi'
+import * as $appointmentAPI  from './api/onePassAPI/visitorManagementApi'
 
 Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 // Vue.use(ElementUI)
@@ -34,6 +35,7 @@ Vue.prototype.$moment = moment
 Vue.prototype.$vueHttp = $vueHttp
 Vue.prototype.$commonAPI = $commonAPI
 Vue.prototype.$parkingLotAPI = $parkingLotAPI
+Vue.prototype.$appointmentAPI = $appointmentAPI
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key,filters[key])
