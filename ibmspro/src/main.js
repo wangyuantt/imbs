@@ -25,7 +25,7 @@ import moment from 'moment'
 import * as $commonAPI from './api/commonAPI/commonApi'
 import * as $parkingLotAPI from './api/parkingLotAPI/InfoQueryApi'
 import * as $visitorManagementAPI  from './api/onePassAPI/visitorManagementApi'
-
+import * as $videoSurveillanceAPI from './api/videoSurveillanceAPI/videoSurveillanceApi'
 Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 // Vue.use(ElementUI)
 
@@ -36,6 +36,7 @@ Vue.prototype.$vueHttp = $vueHttp
 Vue.prototype.$commonAPI = $commonAPI
 Vue.prototype.$parkingLotAPI = $parkingLotAPI
 Vue.prototype.$visitorManagementAPI = $visitorManagementAPI
+Vue.prototype.$videoSurveillanceAPI = $videoSurveillanceAPI
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key,filters[key])
