@@ -3,7 +3,7 @@
  * @Description: 公共服务接口
  * @Date: 2021-02-20 17:57:02 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 19:59:59
+ * @Last Modified time: 2021-02-26 16:09:27
  */
 import * as IMBS_SERVER_API from '../interface'
 
@@ -18,4 +18,8 @@ export const getParkList = (params = {}) => {
 // 获取出入口列表
 export const getEntranceList = (params = {}) => {
     return IMBS_SERVER_API.post("/hikisecurecenter/entrance/entranceList", params)
+}
+// 查询人员列表
+export const getPersonalList = (params = {}) => {
+    return IMBS_SERVER_API.post("/hikisecurecenter/person/advance/personList", params)
 }
