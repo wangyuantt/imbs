@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 23:05:03 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 20:18:17
+ * @Last Modified time: 2021-02-27 01:03:50
  */
 /*
  * @Author: Wang Yuan 
@@ -132,9 +132,6 @@ export default {
             tableLoading: false,
             tableData: []
         } 
-    },
-    mounted () {
-        this.getTableList()
     },
     computed: {
         navTitle () {

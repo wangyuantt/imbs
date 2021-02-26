@@ -3,7 +3,7 @@
  * @Date: 2021-02-24 22:45:41
  * @Desc: 访客管理 > 访客预约 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 16:35:50
+ * @Last Modified time: 2021-02-27 01:03:21
  */
 <template>
     <div class="visitor-appointment va">
@@ -118,10 +118,6 @@ export default {
             tableLoading: false,
             queryBtnSttus: false
         } 
-    },
-    mounted () {
-        console.log(this.$route)
-        this.getTableList()
     },
     computed: {
         navTitle () {

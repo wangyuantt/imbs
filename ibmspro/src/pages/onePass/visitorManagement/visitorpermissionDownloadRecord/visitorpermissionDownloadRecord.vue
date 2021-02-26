@@ -3,7 +3,7 @@
  * @Date: 2021-02-24 23:23:42
  * @Desc: 访客权限下载记录   
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 21:22:05
+ * @Last Modified time: 2021-02-27 01:04:03
  */
 <template>
     <div class="visitor-permission-download-record vpdr">
@@ -142,9 +142,6 @@ export default {
             let meta = this.$route.meta
             return meta.subTitle + ' > ' + meta.currentPageTitle
         }
-    },
-    mounted () {
-        this.getTableList()
     },
     methods: {
         queryBtnAction () {
