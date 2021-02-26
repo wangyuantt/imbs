@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-25 21:57:25 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 21:24:16
+ * @Last Modified time: 2021-02-27 00:35:35
  */
 import moment from 'moment'
 
@@ -152,5 +152,86 @@ export const deviceType = status => {
             return '停车场'
         case 5:
             return '人脸监控'
+    }
+}
+//车牌类型
+export const plateType = status => {
+    switch (status) {
+        case 0:
+            return '标准民用车'
+        case 1:
+            return '02式民用车牌'
+        case 2:
+            return '武警车车牌'
+        case 3:
+            return '警车车牌'
+        case 4:
+            return '民用车双行尾牌'
+        case 5:
+            return '使馆车牌'
+        case 6:
+            return '农用车车牌'
+        case 7:
+            return '摩托车'
+        case 8:
+            return '新能源车'
+        case 13:
+            return '军车车牌'
+    }
+}
+// 车牌颜色
+export const plateColor = status => {
+    switch (status) {
+        case 0:
+            return '蓝色'
+        case 1:
+            return '黄色'
+        case 2:
+            return '白色'
+        case 3:
+            return '黑色'
+        case 4:
+            return '绿色'
+        case 5:
+            return '民航黑色'
+        case 255:
+            return '其他颜色'
+    }
+}
+// 车辆颜色
+export const vehicleColor = status => {
+    switch (status) {
+        case 0:
+            return '其他颜色'
+        case 1:
+            return '白色'
+        case 2:
+            return '银色'
+        case 3:
+            return '灰色'
+        case 4:
+            return '黑色'
+        case 5:
+            return '红色'
+        case 6:
+            return '深蓝色'
+        case 7:
+            return '蓝色'
+        case 8:
+            return '黄色'
+        case 9:
+            return '绿色'
+        case 10:
+            return '棕色'
+        case 11:
+            return '粉色'
+        case 12:
+            return '紫色'
+        case 13:
+            return '深灰'
+        case 14:
+            return '杏色'
+        case 255:
+            return '未识别的车辆颜色'
     }
 }
