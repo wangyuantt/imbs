@@ -149,7 +149,7 @@ export default {
                 // QRCode: '', // 访客二维码内容,支持动态二维码或历史版本接口返回的静态二维码要求二维码图片的生成采用QRCode编码、纠错等级为L，版本大于等于5
                 // orderId: '', // 访客记录唯一标识，对应预约或修改时返回的orderId字段
             }
-            this.$appointmentAPI.appointmentRecords(data).then(res => {
+            this.$visitorManagementAPI.appointmentRecords(data).then(res => {
                 this.tableLoading = false
                 this.queryBtnSttus = false
                 if (res.code === 0) {
