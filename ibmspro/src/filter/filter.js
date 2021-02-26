@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-25 21:57:25 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 16:21:16
+ * @Last Modified time: 2021-02-26 20:11:10
  */
 import moment from 'moment'
 
@@ -105,7 +105,7 @@ export const gender = status => {
             break;
     }
 }
-// 访客管理 > 访客预约 -- 访客状态
+// 访客管理 > 1-3为：访客预约--访客状态，5-8为：来访距记录 -- 访客状态
 export const visitorStatus = status => {
     switch (status) {
         case 1:
@@ -116,6 +116,18 @@ export const visitorStatus = status => {
             break;
         case 3:
             return '失效'
+            break;
+        case 5:
+            return '超期自动签离'
+            break;
+        case 6:
+            return '已签离'
+            break;
+        case 7:
+            return '超期未签离'
+            break;
+        case 8:
+            return '已到达'
             break;
     }
 }
