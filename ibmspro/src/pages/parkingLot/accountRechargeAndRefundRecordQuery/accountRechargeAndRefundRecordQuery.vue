@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 14:37:28 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-24 14:54:25
+ * @Last Modified time: 2021-02-26 14:54:07
  */
 <template>
     <div class="account-recharge-and-refund-record-query">
@@ -45,6 +45,7 @@
                         <div class="tip-span margin-top-bottom">开始时间</div>
                         <el-date-picker
                             style="width:100%"
+                            @change='choseStratTime'
                             v-model="startingTime"
                             type="datetime"
                             size="small"
@@ -79,7 +80,7 @@
                     </div>
                 </el-col>
                 <el-col :span="6" style="margin-top:40px">
-                    <el-button size='small' type="primary">查询</el-button>
+                    <el-button size='small' type="primary" @click="queryBtnAction" :disabled="queryBtnSttus">查询</el-button>
                     <el-button size='small'>重置</el-button>
                 </el-col>
             </el-row>
@@ -91,13 +92,25 @@
         <div class="table">
             <el-row type="flex" justify="center">
                 <el-col :span=23>
-                    <el-table :data="tableData" border style="width: 100%" height="600" max-height='600'>
-                        <el-table-column prop="tLicenseNum" label="账户（车主）"></el-table-column>
-                        <el-table-column prop="tParkingLot" label="重置(+)/退款(-)（元）"></el-table-column>
-                        <el-table-column prop="tParkingStatus" label="收支类型"></el-table-column>
-                        <el-table-column prop="tLeaveTime" label="收支方式"></el-table-column>
-                        <el-table-column prop="tFloor" label="操作时间"></el-table-column>
-                        <el-table-column prop="tFloor" label="操作员"></el-table-column>
+                    <el-table :data="tableData" v-loading="tableLoading" element-loading-text="正在查询..."  border style="width: 100%" height="600" max-height='600'>
+                        <el-table-column prop="account" label="账户（车主）"></el-table-column>
+                        <el-table-column prop="fee" label="重置(+)/退款(-)（元）"></el-table-column>
+                        <el-table-column prop="tParkingStatus" label="收支类型">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.tradeType | tradeType}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="tradeWay" label="收支方式">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.tradeWay | tradeWay}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="tradeTime" label="操作时间">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.tradeTime | ISO8601Format }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="operator" label="操作员"></el-table-column>
                     </el-table>
                 </el-col>
             </el-row>
@@ -109,10 +122,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[20, 40, 80, 100]"
+                        :page-size="pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="4000">
+                        :total="total">
                     </el-pagination>
                 </el-col>
             </el-row>
@@ -125,66 +138,108 @@ export default {
     data () {
         return {
             currentPage: 1,
+            pageSize: 20,
+            total: 0,
+            queryBtnSttus: false,
+            tableLoading: false,
             owener: '', 
             startingTime: '',
             endingTime: '',
-            operator: '0',
-            tableData: [
-                {
-                    tLicenseNum: '浙A88888',
-                    tParkingLot: '南苑',
-                    tParkingStatus: '退款',
-                    tFloor: '10010'
-                }
-            ],
+            operator: '',
+            tableData: [],
             operatorOptions: [
                 {
-                    value: '0',
+                    value: '',
                     label: '全部'
-                },
-                {
-                    value: '1',
-                    label: '前台'
                 }
             ],
-            incomeAndExpenditureType: '0',
+            incomeAndExpenditureType: '',
             incomeAndExpenditureTypeOptions: [
                 {
-                    value: '0',
+                    value: '',
                     label: '全部'
                 },
                 {
-                    value: '1',
+                    value: 0,
                     label: '退款'
                 },
                 {
-                    value: '2',
-                    label: '包期'
+                    value: 1,
+                    label: '充值'
                 }
             ],
-            incomeAndExpenditureMethod: '0',
+            incomeAndExpenditureMethod: '',
             incomeAndExpenditureMethodOptions: [
                 {
-                    value: '0',
+                    value: '',
                     label: '全部'
                 },
                 {
-                    value: '1',
-                    label: '储值阿账户'
+                    value: 1,
+                    label: '现金'
                 },
                 {
-                    value: '2',
-                    label: '现金'
+                    value: 4,
+                    label: '支付宝'
+                },
+                {
+                    value: 5,
+                    label: '微信'
                 }
             ],
         }
     },
+    mounted () {
+        this.getTableList()
+    },
     methods: {
+        queryBtnAction () {
+            this.queryBtnSttus = true
+            this.getTableList()
+        },
+        getTableList () {
+            this.tableLoading = true
+            let data = {
+                "account": this.owener,
+                "tradeType": this.incomeAndExpenditureType, // 交易类型 0：充值 1：退款
+                "tradeWay": this.incomeAndExpenditureMethod, // 交易方式 1：现金 4：支付宝 5：微信
+                "startTime": this.startingTime,
+                "endTime": this.endingTime,
+                "operator": this.operator, // 收费员名称
+                "pageNo": this.currentPage,
+                "pageSize": this.pageSize
+            }
+            this.$parkingLotAPI.accountRecAndRefRecQry(data).then(res => {
+                this.tableLoading = false
+                this.queryBtnSttus = false
+                if (res.code === 0) {
+                    if (res.data.code && res.data.code === '0') {
+                        this.total = res.data.data.total
+                        this.tableData = res.data.data.list
+                    } else {
+                        this.tableData = []
+                        this.$message.error(res.data.message)
+                    }
+                } else {
+                    this.$message.error(res.msg)
+                }
+            })
+        },
+        choseStratTime () {
+            let _startTime = this.$moment(this.startingTime).format()
+            this.startingTime = _startTime
+        },
+        choseEndTime () {
+            let _endTime = this.$moment(this.endingTime).format()
+            this.endingTime = _endTime
+        },
         handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+            this.pageSize = val
+            this.getTableList()
         },
         handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
+            this.currentPage = val
+            this.getTableList()
         }
     }
 }
