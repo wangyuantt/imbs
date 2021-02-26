@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-25 21:57:25 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-26 14:05:35
+ * @Last Modified time: 2021-02-26 16:21:16
  */
 import moment from 'moment'
 
@@ -91,6 +91,31 @@ export const tradeType = status => {
             break;
         case 1:
             return '退款'
+            break;
+    }
+}
+// 性别
+export const gender = status => {
+    switch (status) {
+        case 1:
+            return '男'
+            break;
+        case 2:
+            return '女'
+            break;
+    }
+}
+// 访客管理 > 访客预约 -- 访客状态
+export const visitorStatus = status => {
+    switch (status) {
+        case 1:
+            return '正常'
+            break;
+        case 2:
+            return '迟到'
+            break;
+        case 3:
+            return '失效'
             break;
     }
 }
