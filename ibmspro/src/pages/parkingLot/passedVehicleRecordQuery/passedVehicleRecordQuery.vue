@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-25 23:34:54
+ * @Last Modified time: 2021-02-26 14:53:59
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
