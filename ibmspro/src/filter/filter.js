@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-25 21:57:25 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-25 22:38:10
+ * @Last Modified time: 2021-02-26 14:05:35
  */
 import moment from 'moment'
 
@@ -66,6 +66,31 @@ export const vehicleOut = status => {
             break;
         case 1:
             return '出场'
+            break;
+    }
+}
+// 交易方式
+export const tradeWay = status => {
+    switch (status) {
+        case 1:
+            return '现金'
+            break;
+        case 4:
+            return '支付宝'
+            break;
+        case 5:
+            return '微信'
+            break;
+    }
+}
+// 交易类型
+export const tradeType = status => {
+    switch (status) {
+        case 0:
+            return '充值'
+            break;
+        case 1:
+            return '退款'
             break;
     }
 }
