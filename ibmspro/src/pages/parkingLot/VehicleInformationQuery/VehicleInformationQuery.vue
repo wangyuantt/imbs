@@ -3,7 +3,7 @@
  * @Date: 2021-02-26 23:16:40 
  * @Desc: 车辆管控 -- 车辆信息查询
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-27 00:45:14
+ * @Last Modified time: 2021-02-27 00:59:38
  */
 <template>
     <div class="vehicle-information-query viq">
@@ -214,9 +214,6 @@ export default {
             let meta = this.$route.meta
             return meta.title + ' > ' + meta.currentPageTitle
         }
-    },
-    mounted () {
-        this.getTableList()
     },
     methods: {
         clearAllCondition () {

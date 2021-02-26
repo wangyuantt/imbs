@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-27 00:49:45
+ * @Last Modified time: 2021-02-27 01:00:09
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
@@ -196,7 +196,6 @@ export default {
     },
     mounted () {
         this.getConditionParams()
-        this.gerRecordTableList()
     },  
     methods: {
         queryBtnAction () {

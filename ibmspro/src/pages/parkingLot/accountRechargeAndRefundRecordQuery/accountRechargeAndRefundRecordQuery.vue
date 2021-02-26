@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-24 14:37:28 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-27 00:55:12
+ * @Last Modified time: 2021-02-27 00:59:47
  */
 <template>
     <div class="account-recharge-and-refund-record-query">
@@ -188,9 +188,6 @@ export default {
                 }
             ],
         }
-    },
-    mounted () {
-        this.getTableList()
     },
     methods: {
         queryBtnAction () {
