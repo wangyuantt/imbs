@@ -3,7 +3,7 @@
  * @Date: 2021-02-23 20:46:14 
  * @Last Modified by: Wang Yuan
  * @Desc: 停车场--信息查询--过车记录查询
- * @Last Modified time: 2021-02-27 01:00:09
+ * @Last Modified time: 2021-02-27 13:30:12
  */
 <template>
     <div class="passed-vehicler-ecord-query pveq">
@@ -66,9 +66,9 @@
                         <el-select v-model="entrance" placeholder="请选择" size="small" style="width:90%">
                             <el-option
                             v-for="item in entranceOptions"
-                            :key="item.parkIndexCode"
-                            :label="item.parkName"
-                            :value="item.parkIndexCode">
+                            :key="item.entranceIndexCode"
+                            :label="item.entranceName"
+                            :value="item.entranceIndexCode">
                             </el-option>
                         </el-select>
                     </div>
@@ -179,9 +179,12 @@ export default {
             entrance: null,
             entranceOptions: [
                 {
-                    parkIndexCode: null,
-                    parentParkIndexCode: null,
-                    parkName: '全部'
+                    createTime: "",
+                    entranceIndexCode: null,
+                    entranceName: "全部",
+                    parkIndexCode: "",
+                    roadNum: '',
+                    updateTime: ""
                 }
             ],
             parkingGarage: null,
@@ -284,17 +287,21 @@ export default {
                 "parkIndexCodes": parkIndexCodes // 停车场唯一标识集 多个值使用英文逗号分隔,不超过1000个，可通过获取停车库列表接口获取
             }
             this.entranceOptions = [{
-                    parkIndexCode: null,
-                    parentParkIndexCode: null,
-                    parkName: '全部'
+                    createTime: "",
+                    entranceIndexCode: null,
+                    entranceName: "全部",
+                    parkIndexCode: "",
+                    roadNum: '',
+                    updateTime: ""
                 }]
             this.entrance  = ''
-            this.$commonAPI.getParkList(data).then(res => {
+            this.$commonAPI.getEntranceList(data).then(res => {
                 if (res.code === 0) {
                     if (res.data.code === '0') {
                         if (res.data.data.length === 0) {
                             this.entranceOptions = []
                         } else {
+                            this.entrance = null
                             this.entranceOptions = this.entranceOptions.concat(res.data.data)
                         }
                     } else {
