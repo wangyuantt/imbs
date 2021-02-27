@@ -3,7 +3,7 @@
  * @Date: 2021-02-24 23:23:42
  * @Desc: 访客权限下载记录   
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-27 01:04:03
+ * @Last Modified time: 2021-02-27 14:44:48
  */
 <template>
     <div class="visitor-permission-download-record vpdr">
@@ -14,8 +14,8 @@
             <el-row>
                 <el-col :span="6">
                     <div class="condition-one condition">
-                        <div class="tip-span margin-top-bottom">姓名</div>
-                        <el-input size="small" v-model="userName" placeholder="姓名"></el-input>
+                        <div class="tip-span margin-top-bottom">访客记录ID</div>
+                        <el-input size="small" v-model="visitRecordID" placeholder="访客记录ID"></el-input>
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -96,7 +96,7 @@ export default {
     name: 'visitorpermissionDownloadRecord',
     data () {
         return {
-            userName: '',
+            visitRecordID: '',
             checkInTime: '',
             authorizationType: '',
             authorizationTypeOptions: [
@@ -185,7 +185,7 @@ export default {
             this.getTableList()
         },
         clearAllCondition () {
-            this.userName = ''
+            this.visitRecordID = ''
             this.checkInTime = ''
             this.authorizationType = ''
         }
