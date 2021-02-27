@@ -3,7 +3,7 @@
  * @Date: 2021-02-24 22:45:41
  * @Desc: 访客管理 > 访客预约 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-27 01:03:21
+ * @Last Modified time: 2021-02-27 11:40:14
  */
 <template>
     <div class="visitor-appointment va">
@@ -133,17 +133,17 @@ export default {
         getTableList () {
             this.tableLoading = true
             let data = {
-                // receptionistId: '', // true 被访人唯一标识，从 获取人员列表v2 接口获取返回参数personId
+                receptionistId: '', // true 被访人唯一标识，从 获取人员列表v2 接口获取返回参数personId
                 visitorName: this.userName, // 访客姓名，支持中英文字符，不能包含 ’ / \ : * ? " < >
-                // phoneNo: '', // 联系电话建议填写手机号码
+                phoneNo: null, // 联系电话建议填写手机号码
                 visitStartTimeBegin: this.appointmentStartTime, // 预计来访开始时间
                 visitStartTimeEnd: this.appointmentEndTime, // 预计来访结束时间
-                // visitEndTimeBegin: '', // 预计离开开始时间
-                // visitEndTimeEnd: '', // 预计离开结束时间
+                visitEndTimeBegin: null, // 预计离开开始时间
+                visitEndTimeEnd: null, // 预计离开结束时间
                 pageNo: this.currentPage,
                 pageSize: this.pageSize,
-                // QRCode: '', // 访客二维码内容,支持动态二维码或历史版本接口返回的静态二维码要求二维码图片的生成采用QRCode编码、纠错等级为L，版本大于等于5
-                // orderId: '', // 访客记录唯一标识，对应预约或修改时返回的orderId字段
+                QRCode: null, // 访客二维码内容,支持动态二维码或历史版本接口返回的静态二维码要求二维码图片的生成采用QRCode编码、纠错等级为L，版本大于等于5
+                orderId: null, // 访客记录唯一标识，对应预约或修改时返回的orderId字段
             }
             this.$visitorManagementAPI.appointmentRecords(data).then(res => {
                 this.tableLoading = false
