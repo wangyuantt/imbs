@@ -2,12 +2,12 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-20 17:31:15 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-23 12:34:11
+ * @Last Modified time: 2021-02-27 14:49:50
  */
 import axios from 'axios'
 
 const Axios = axios.create({
-    baseURL: '/ibms',
+    baseURL: process.env.ROOT_DOMAIN,
     responseType: 'json',
     timeout: 10000,
     headers: {
