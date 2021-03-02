@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-03-01 22:49:42 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-03-01 22:57:00
+ * @Last Modified time: 2021-03-02 11:36:19
  */
 <template>
   <div class="login-data-form">
@@ -45,14 +45,11 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.loading = true
-          this.$http({
-            url: this.$http.adornUrl('/app/login'),
-            method: 'post',
-            data: this.$http.adornData({
-              'mobile': this.dataForm.mobile,
-              'password': this.dataForm.password
-            })
-          }).then(res => {
+          let data = {
+            'mobile': this.dataForm.mobile,
+            'password': this.dataForm.password
+          }
+          this.$IMBSRequest.userLogin(data).then(res => {
             this.loading = false
             if (res && res.code === 0) {
               this.$cookie.set('token', res.token)

@@ -10,6 +10,8 @@ import '@/assets/scss/index.scss'
 import * as filters from './filter/filter'
 import moment from 'moment'
 import httpRequest from '@/utils/httpRequest' // api: https://github.com/axios/axios
+import * as IMBSRequest from '@/interface/imbs-control'
+
 import { isAuth } from '@/utils'
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -28,6 +30,7 @@ Object.keys(filters).forEach(key => {
 
 // 挂载全局
 Vue.prototype.$http = httpRequest // ajax请求方法
+Vue.prototype.$IMBSRequest = IMBSRequest // ajax请求方法
 Vue.prototype.isAuth = isAuth     // 权限方法
 Vue.prototype.$moment = moment    // 时间格式化
 
