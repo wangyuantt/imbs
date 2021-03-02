@@ -44,8 +44,8 @@ http.interceptors.response.use(response => {
 http.adornUrl = (actionName) => {
   // 非生产环境 && 开启代理, 接口前缀统一使用[/proxyApi/]前缀做代理拦截!  window.SITE_CONFIG.baseUrl
   // let domain = 'http://127.0.0.1:5001/ibms'
-  let domain = 'http://ibms.renyecn.com:8002/ibms'
-  return (process.env.NODE_ENV !== 'production' && process.env.OPEN_PROXY ? '/proxyApi/' : domain) + actionName
+  // let domain = 'http://ibms.renyecn.com:8002/ibms'
+  return (process.env.NODE_ENV !== 'production' && process.env.OPEN_PROXY ? '/proxyApi/' : window.SITE_CONFIG.baseUrl) + actionName
 }
 
 /**

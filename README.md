@@ -13,16 +13,16 @@ npm run dev
 
 # build for production with minification
 构建生成的资源文件保存在/dist目录下，可通过config/index.js目录文件修改相关配置信息
-npm run build 默认
+npm run build 默认  8002
 
 # 构建测试环境
-npm run build --qa
+npm run build --qa 
 
 # 构建验收环境
 npm run build --uat
 
 # 构建生产环境
-npm run build --prod
+npm run build --prod  5001
 
 # build for production and view the bundle analyzer report
 npm run build --report
