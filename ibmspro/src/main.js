@@ -30,7 +30,7 @@ Object.keys(filters).forEach(key => {
 
 // 挂载全局
 Vue.prototype.$http = httpRequest // ajax请求方法
-Vue.prototype.$IMBSRequest = IMBSRequest // ajax请求方法
+Vue.prototype.$imbsRequest = IMBSRequest // ajax请求方法
 Vue.prototype.isAuth = isAuth     // 权限方法
 Vue.prototype.$moment = moment    // 时间格式化
 

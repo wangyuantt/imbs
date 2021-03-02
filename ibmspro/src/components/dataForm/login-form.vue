@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-03-01 22:49:42 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-03-02 11:36:19
+ * @Last Modified time: 2021-03-02 11:38:51
  */
 <template>
   <div class="login-data-form">
@@ -49,7 +49,7 @@ export default {
             'mobile': this.dataForm.mobile,
             'password': this.dataForm.password
           }
-          this.$IMBSRequest.userLogin(data).then(res => {
+          this.$imbsRequest.userLogin(data).then(res => {
             this.loading = false
             if (res && res.code === 0) {
               this.$cookie.set('token', res.token)
