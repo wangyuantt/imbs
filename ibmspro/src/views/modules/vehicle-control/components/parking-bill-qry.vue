@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-03-01 09:59:37 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-03-01 11:16:49
+ * @Last Modified time: 2021-03-02 23:11:37
  */
 <template>
     <div class="parking-bill-qry">
@@ -83,14 +83,11 @@ export default {
     },
     getDataList () {
       this.dataListLoading = true
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/pay/quickPreBill'),
-        method: 'post',
-        data: this.$http.adornData({
-          parkSyscode: this.dataForm.parkSyscode, // 停车库唯一标识
-          plateNo: this.dataForm.plateNo // 车牌
-        })
-      }).then(res => {
+      let data = {
+        parkSyscode: this.dataForm.parkSyscode, // 停车库唯一标识
+        plateNo: this.dataForm.plateNo // 车牌
+      }
+      this.$imbsRequest.quickPreBill(data).then(res => {
         this.dataListLoading = false
         if (res.code === 0) {
           if (res.data.code === '0') {
@@ -105,13 +102,10 @@ export default {
       })
     },
     getParkingGarageList () {
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/park/parkList'),
-        method: 'post',
-        data: this.$http.adornData({
-          parkIndexCodes: '' // 停车库唯一标识集合 7e09fddb66264eaab4146ef2d6dadbbb
-        })
-      }).then(res => {
+      let data = {
+        parkIndexCodes: '' // 停车库唯一标识集合 7e09fddb66264eaab4146ef2d6dadbbb
+      }
+      this.$imbsRequest.parkingGarageList(data).then(res => {
         if (res && res.code === 0) {
           this.parkingGarageOptions = this.parkingGarageOptions.concat(res.data.data)
         }

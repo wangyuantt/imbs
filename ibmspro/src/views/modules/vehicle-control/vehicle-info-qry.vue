@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-27 23:46:23 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-28 12:50:05
+ * @Last Modified time: 2021-03-02 23:00:19
  */
 <template>
     <div class="vehicle-info-qry">
@@ -171,43 +171,22 @@ export default {
   methods: {
     getDataList () {
       this.dataListLoading = true
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/vehicle/advance/vehicleList'),
-        method: 'post',
-        data: this.$http.adornData({
-          personName: this.dataForm.userName,
-          plateNo: this.dataForm.licensePlateNumber,
-          plateType: this.dataForm.licensePlateType, // 车牌类型
-          pageNo: this.currentPage,
-          pageSize: this.pageSize,
-          isBandPerson: this.dataForm.isBandPerson, // 车辆是否和人员绑定，带有人员信息；0:不关联；1:关联
-          vehicleType: this.dataForm.vehicleType // 车辆类型
-        })
-      }).then(res => {
+      let data = {
+        personName: this.dataForm.userName,
+        plateNo: this.dataForm.licensePlateNumber,
+        plateType: this.dataForm.licensePlateType, // 车牌类型
+        pageNo: this.currentPage,
+        pageSize: this.pageSize,
+        isBandPerson: this.dataForm.isBandPerson, // 车辆是否和人员绑定，带有人员信息；0:不关联；1:关联
+        vehicleType: this.dataForm.vehicleType // 车辆类型
+      }
+      this.$imbsRequest.vehicleList(data).then(res => {
         this.dataListLoading = false
         if (res && res.code === 0) {
           this.dataList = res.data.data.list
           this.totalPage = res.data.data.total
         }
       })
-      //   this.$http({
-      //     url: this.$http.adornUrl('/hikisecurecenter/vehicle/advance/vehicleList'),
-      //     method: 'post',
-      //     params: this.$http.adornParams({
-      //       'page': this.pageIndex,
-      //       'limit': this.pageSize,
-      //       'username': this.dataForm.userName
-      //     })
-      //   }).then(({data}) => {
-      //   if (data && data.code === 0) {
-      //     this.dataList = data.page.list
-      //     this.totalPage = data.page.totalCount
-      //   } else {
-      //     this.dataList = []
-      //     this.totalPage = 0
-      //   }
-      //   this.dataListLoading = false
-      // })
     },
     // 每页数
     sizeChangeHandle (val) {

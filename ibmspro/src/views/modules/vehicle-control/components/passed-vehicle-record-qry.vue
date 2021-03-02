@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-02-28 12:20:04 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-02-28 14:24:46
+ * @Last Modified time: 2021-03-02 22:55:32
  */
 <template>
   <div class="passed-vehicle-record-qry pvrq">
@@ -157,26 +157,23 @@ export default {
     },
     getDataList () {
       this.dataListLoading = true
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/crossRecords/page'),
-        method: 'post',
-        data: this.$http.adornData({
-          parkSyscode: this.parkingGarage, // 停车库唯一标识
-          entranceSyscode: this.entrance, // 出入口唯一标识
-          plateNo: this.dataForm.licensePlateNumber, // 车牌
-          cardNo: this.dataForm.cardNumber, // 卡号
-          startTime: this.dataForm.startingTime, // 查询开始时间  SO8601格式：yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：2018-07-26T15:00:00+08:00
-          endTime: this.dataForm.endingTime, // 查询结束时间
-          pageNo: this.currentPage, // true
-          pageSize: this.pageSize // true (0, 1000]
-          // vehicleOut: '', // 进出场标识 0:进场，1:出场
-          // vehicleType: '', // 车辆类型 0：其他车 1：小型车 2：大型车 3：摩托车
-          // releaseResult: '', // 放行结果 0-未放行 1-正常放行 2-离线放行
-          // releaseWay: '', // 放行方式 10-未开闸 11-自动开闸 12-人工/人工开闸 13-遥控器开闸
-          // releaseReason: '', // 放行原因 100-固定车自动放行 101-临时车自动放行 102-预约车自动放行 103-一户多车自动放行
-          // carCategory: '', // 车辆分类  9-黑名单 10-固定车 11-临时车 12-预约车 14-特殊车
-        })
-      }).then(res => {
+      let data = {
+        parkSyscode: this.parkingGarage, // 停车库唯一标识
+        entranceSyscode: this.entrance, // 出入口唯一标识
+        plateNo: this.dataForm.licensePlateNumber, // 车牌
+        cardNo: this.dataForm.cardNumber, // 卡号
+        startTime: this.dataForm.startingTime, // 查询开始时间  SO8601格式：yyyy-MM-ddTHH:mm:ss+当前时区，例如北京时间：2018-07-26T15:00:00+08:00
+        endTime: this.dataForm.endingTime, // 查询结束时间
+        pageNo: this.currentPage, // true
+        pageSize: this.pageSize // true (0, 1000]
+        // vehicleOut: '', // 进出场标识 0:进场，1:出场
+        // vehicleType: '', // 车辆类型 0：其他车 1：小型车 2：大型车 3：摩托车
+        // releaseResult: '', // 放行结果 0-未放行 1-正常放行 2-离线放行
+        // releaseWay: '', // 放行方式 10-未开闸 11-自动开闸 12-人工/人工开闸 13-遥控器开闸
+        // releaseReason: '', // 放行原因 100-固定车自动放行 101-临时车自动放行 102-预约车自动放行 103-一户多车自动放行
+        // carCategory: '', // 车辆分类  9-黑名单 10-固定车 11-临时车 12-预约车 14-特殊车
+      }
+      this.$imbsRequest.passedRecoedList(data).then(res => {
         this.dataListLoading = false
         if (res && res.code === 0) {
           this.dataList = res.data.data.list
@@ -187,13 +184,10 @@ export default {
       })
     },
     getParkingGarageList () {
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/park/parkList'),
-        method: 'post',
-        data: this.$http.adornData({
-          parkIndexCodes: '' // 停车库唯一标识集合 7e09fddb66264eaab4146ef2d6dadbbb
-        })
-      }).then(res => {
+      let data = {
+        parkIndexCodes: '' // 停车库唯一标识集合 7e09fddb66264eaab4146ef2d6dadbbb
+      }
+      this.$imbsRequest.parkingGarageList(data).then(res => {
         if (res && res.code === 0) {
           this.parkingGarageOptions = this.parkingGarageOptions.concat(res.data.data)
         }
@@ -213,14 +207,10 @@ export default {
           updateTime: ''
         }
       ]
-      this.$http({
-        url: this.$http.adornUrl('/hikisecurecenter/entrance/entranceList'),
-        method: 'post',
-        data: this.$http.adornData({
-          parkIndexCodes: parkIndexCodes // 停车场唯一标识集 多个值使用英文逗号分隔,不超过1000个，可通过获取停车库列表接口获取
-        })
-      }).then(res => {
-        console.log(res)
+      let data = {
+        parkIndexCodes: parkIndexCodes // 停车场唯一标识集 多个值使用英文逗号分隔,不超过1000个，可通过获取停车库列表接口获取
+      }
+      this.$imbsRequest.entranceList(data).then(res => {
         if (res.code === 0) {
           if (res.data.data) {
             this.entranceOptions = this.entranceOptions.concat(res.data.data)
