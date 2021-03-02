@@ -35,4 +35,13 @@ npm run build --report
   2、修改/src/assets/scss/_variables.scss文件中$--color-primary: [#17b3a3];[]中括号中的值，值与第一步值同步即可。（注意：这里只是修改站点主题，不包括element-ui组件主题）
 
 ```
+## 常见问题
+
+``` bash
+ # 如何解决跨域？
+  1、修改/config/dev.env.js目录文件中OPEN_PROXY: true开启代理
+    修改/config/index.js目录文件中proxyTable对象target: '代理api接口请求地址'
+  2、发布需要上传哪些文件？
+     /dist目录下：1805021549（静态资源，18年05月03日15时49分）、config（配置文件）、index.html
+```
 
