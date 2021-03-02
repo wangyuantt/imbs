@@ -1,6 +1,6 @@
-# ibmspro
+# IMB-PRO
 
-> A Vue.js project
+> 综合安防管理平台
 
 ## Build Setup
 
@@ -12,10 +12,27 @@ npm install
 npm run dev
 
 # build for production with minification
-npm run build
+构建生成的资源文件保存在/dist目录下，可通过config/index.js目录文件修改相关配置信息
+npm run build 默认
+
+# 构建测试环境
+npm run build --qa
+
+# 构建验收环境
+npm run build --uat
+
+# 构建生产环境
+npm run build --prod
 
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+## 项目配置
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+``` bash
+ # 主题定制
+  1、修改/src/element-ui-theme/index.js文件中import './element-[#17b3a3]/index.css'[]中括号中的值，值可以在同文件中list属性中取 即可。（注意：这里只是修改element-ui组件主题）
+  2、修改/src/assets/scss/_variables.scss文件中$--color-primary: [#17b3a3];[]中括号中的值，值与第一步值同步即可。（注意：这里只是修改站点主题，不包括element-ui组件主题）
+
+```
+
