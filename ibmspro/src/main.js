@@ -10,7 +10,7 @@ import '@/assets/scss/index.scss'
 import * as filters from './filter/filter'
 import moment from 'moment'
 import httpRequest from '@/utils/httpRequest' // api: https://github.com/axios/axios
-import * as IMBSRequest from '@/interface/imbs-control'
+import * as IMBSRequest from '@/interface/imbs-api-controller'
 
 import { isAuth } from '@/utils'
 import cloneDeep from 'lodash/cloneDeep'
