@@ -44,12 +44,13 @@ const mainRoutes = {
     { path: '/theme', component: _import('common/theme'), name: 'theme', meta: { title: '主题' } }
   ],
   beforeEnter (to, from, next) {
-    let token = Vue.cookie.get('token')
-    if (!token || !/\S/.test(token)) {
+    let token = sessionStorage.getItem('token')
+    if (!token) {
       clearLoginInfo()
-      next({ name: 'login' })
+      next({ path: '/login' })
+    } else {
+      next()
     }
-    next()
   }
 }
 

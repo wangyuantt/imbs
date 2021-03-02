@@ -2,7 +2,7 @@
  * @Author: Wang Yuan 
  * @Date: 2021-03-01 22:49:42 
  * @Last Modified by: Wang Yuan
- * @Last Modified time: 2021-03-02 12:17:12
+ * @Last Modified time: 2021-03-02 23:17:26
  */
 <template>
   <div class="login-data-form">
@@ -52,6 +52,7 @@ export default {
           this.$imbsRequest.userLogin(data).then(res => {
             this.loading = false
             if (res && res.code === 0) {
+              sessionStorage.setItem('token', res.token)
               this.$cookie.set('token', res.token)
               this.$router.replace({ name: 'home' })
             } else {
