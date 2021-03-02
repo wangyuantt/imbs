@@ -6,7 +6,8 @@
 
 <script>
   export default {
-    mounted () {
+    created () {
+      console.log('App created')
       if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|iOS|iPad|Blackerry|WebOS|Symbian|Windows Phone|Phone|Nokia|UCWEB)/i)) {
         this.setUserAgent('mb')
       } else {
