@@ -79,7 +79,14 @@
       },
       userName: {
         get () { return this.$store.state.user.name }
+      },
+      userAgent: {
+        get () { return this.$store.state.common.userAgent },
+        set (val) { this.$store.commit('common/updateUserAgent', val) }
       }
+    },
+    mounted () {
+      if (this.userAgent === 'mb') this.sidebarFold = true
     },
     methods: {
       // 修改密码
