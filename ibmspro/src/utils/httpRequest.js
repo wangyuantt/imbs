@@ -6,7 +6,6 @@ import merge from 'lodash/merge'
 // import { clearLoginInfo } from '@/utils'
 
 const http = axios.create({
-  // baseURL: '/ibms',
   timeout: 1000 * 30,
   withCredentials: true,
   headers: {
@@ -39,21 +38,20 @@ http.interceptors.response.use(response => {
 
 /**
  * 请求地址处理
- * @param {*} actionName action方法名称
+ * @param { string } actionName action方法名称
  */
 http.adornUrl = (actionName) => {
-  // 非生产环境 && 开启代理, 接口前缀统一使用[/proxyApi/]前缀做代理拦截!  window.SITE_CONFIG.baseUrl
-  // let domain = 'http://127.0.0.1:5001/ibms'
-  // let domain = 'http://ibms.renyecn.com:8002/ibms'
-  return (process.env.NODE_ENV !== 'production' && process.env.OPEN_PROXY ? '/proxyApi/' : window.SITE_CONFIG.baseUrl) + actionName
+  // 非生产环境 && 开启代理, 接口前缀统一使用[/proxyApi/]前缀做代理拦截! window.SITE_CONFIG.baseUrl
+  let domain = 'http://ibms.renyecn.com:8002/ibms'
+  return (process.env.NODE_ENV !== 'production' && process.env.OPEN_PROXY ? '/proxyApi/' : domain) + actionName
 }
 
 /**
  * get请求参数处理
- * @param {*} params 参数对象
- * @param {*} openDefultParams 是否开启默认参数?
+ * @param { object } params 参数对象
+ * @param { boolean } openDefultParams 是否开启默认参数?
  */
-http.adornParams = (params = {}, openDefultParams = false) => {
+http.adornParams = (params = {}, openDefultParams = true) => {
   var defaults = {
     't': new Date().getTime()
   }
@@ -62,9 +60,9 @@ http.adornParams = (params = {}, openDefultParams = false) => {
 
 /**
  * post请求数据处理
- * @param {*} data 数据对象
- * @param {*} openDefultdata 是否开启默认数据?
- * @param {*} contentType 数据格式
+ * @param { object } data 数据对象
+ * @param { boolean } openDefultdata 是否开启默认数据?
+ * @param { string } contentType 数据格式
  *  json: 'application/json; charset=utf-8'
  *  form: 'application/x-www-form-urlencoded; charset=utf-8'
  */
